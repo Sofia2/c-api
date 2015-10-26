@@ -35,7 +35,7 @@ If you want to test this API, we encourage you to register here, to create your 
 
 If you find any unexpected behavior while using this API, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es).
 
-You may also report bugs or suggest enhancements via pull request.
+You may also report bugs or suggest enhancements via `pull` requests.
 
 ## Installation instructions
 
