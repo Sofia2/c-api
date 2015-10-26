@@ -19,7 +19,7 @@ This repository contains the following directories:
 * [Windows Build](Windows Build): this directory contains a Microsoft Visual Studio 2013 solution that builds the SSAP API DLL files and the examples.
 * [examples](examples): this directory contains usage examples of the whole API. These examples are also integrated in the examples section of the API documentation.
 
-We encourage you to read the documentation and examine the examples before using this API. If you have any problems or questions, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es) or at [www.sofia2.com](www.sofia2.com).
+We encourage you to read the documentation and examine the examples before using this API. If you have any problems or questions, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es) or at sofia2.com.
 
 ## Sofia2 Concepts
 
@@ -33,7 +33,7 @@ If you want to test this API, we encourage you to register here, to create your 
 
 ## Questions, enhancements, bug reporting
 
-If you find any unexpected behavior while using this API, please feel free to contact us at plataformasofia2@indra.es.
+If you find any unexpected behavior while using this API, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es).
 
 You may also report bugs or suggest enhancements via pull request.
 
