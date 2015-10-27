@@ -1,0 +1,3 @@
+<map id="mqtt_connection" name="mqtt_connection">
+<area shape="rect" id="node2" href="$structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection..." alt="" coords="5,5,123,32"/>
+</map>
