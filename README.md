@@ -30,7 +30,7 @@ This repository contains the following directories:
 * [Windows Build](Windows Build): this directory contains a Microsoft Visual Studio 2013 solution that builds the SSAP API DLL files and the examples.
 * [examples](examples): this directory contains usage examples of the whole API. These examples are also integrated in the examples section of the API documentation.
 
-## Questions, enhancements, bug reporting
+## Contact information
 
 If you need support from us, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es) or at sofia2.com.
 
