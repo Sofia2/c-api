@@ -108,6 +108,6 @@ After installing the required software, we recommend you to copy the extracted s
 Finally, you'll just have to open the `Windows Build/SSAP.sln` file and you'll be ready to go!
 
 Note If you create a new Visual Studio Project within the solution, don't forget to 
-* add the ssap and cjson projects as its dependencies,
+* add the `ssap` and `cjson` projects as its dependencies,
 * disable the generation of precompiled headers, and
 * add the preprocessor definition `_CRT_SECURE_NO_WARNINGS`.
