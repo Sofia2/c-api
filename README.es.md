@@ -1,6 +1,8 @@
 # Sofia2, API C
 
-## Información sobre copyright
+*Ver en otros idiomas: [Inglés](README.md), [Español](README.es.md).*
+
+## Copyright
 
 © 2013-15 Indra Sistemas S.A., Carlo Gavazzi Automation S.p.A., Circutor S.A.
 
