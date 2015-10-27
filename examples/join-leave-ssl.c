@@ -63,15 +63,13 @@ int main(){
   printf("Example: establish and close a MQTT over SSL connection with the SIB.\n");
   mqtt_connection* connection = MqttConnection_allocate();
   MqttConnection_setRandomClientId(connection);
-  mqtt_credentials* credentials = buildCredentials("itaca", "endesa2014");
-  MqttConnection_setCredentials(connection, credentials);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
-  ConnectionStatus status = KpMqtt_connectSSL(&connection, "pmubatch.endesa.es", "8883", NULL, "/etc/ssl/certs");
+  ConnectionStatus status = KpMqtt_connectSSL(&connection, "sofia2.com", "8883", NULL, "/etc/ssl/certs");
   if (status != CONNECTED){
     printf("Oops! Something went wrong...\n");
   }  
   
-  ssap_message *joinMessage = generateJoinMessage("2cbbe5655fcb4545be5039fc6fb511de", "ITACApp:ITACApp01");
+  ssap_message *joinMessage = generateJoinMessage("2cbbe5655fcb4545be5039fc6fb511de", "KpName:KpName01");
   
   SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
   if (send_status == SENT){
