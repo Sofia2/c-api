@@ -58,17 +58,13 @@ Last, but not least, the API project must be built using CMake, version 2.8 or h
 
 Obviously, you'll need a working C development environment to use this API. You can use the command
 
-```
-sudo apt-get install build-essential under Ubuntu Linux or Debian, or
-zypper install -t pattern devel_C_C++ under SuSE Linux.
-```
+* `sudo apt-get install build-essential` under Ubuntu Linux or Debian, or
+* `zypper install -t pattern devel_C_C++` under SuSE Linux.
 
 You will also need to install CMake, version 2.8 or higher. You can use the following commands:
 
-```
-sudo apt-get install cmake under Ubuntu Linux or Debian, or
-zypper install cmake under SuSE Linux.
-```
+* `sudo apt-get install cmake` under Ubuntu Linux or Debian, or
+* `zypper install cmake` under SuSE Linux.
 
 Finally, you'll have to install the OpenSSL and libuuid header files. You can use the command
 
