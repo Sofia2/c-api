@@ -10,7 +10,7 @@ Unless required by applicable law or agreed to in writing, software distributed 
 
 ## API documentation
 
-The documentation of the C API is published at http://sofia2.github.io/c-api/
+The documentation of the C API is published at http://sofia2.github.io/c-api/.
 
 Before using the SSAP API for the first time, we strongly recommend that you learn the main concepts of the Sofia2 platform. They have been included in the Sofia2 developer documentation, which can be downloaded from http://sofia2.com/desarrollador_en.html.
 
@@ -28,81 +28,12 @@ This repository contains the following directories:
 * [Windows Build](Windows Build): this directory contains a Microsoft Visual Studio 2013 solution that builds the SSAP API DLL files and the examples.
 * [examples](examples): this directory contains usage examples of the whole API. These examples are also integrated in the examples section of the API documentation.
 
-We encourage you to read the documentation and examine the examples before using this API. If you have any problems or questions, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es) or at sofia2.com.
-
 ## Questions, enhancements, bug reporting
 
-If you find any unexpected behavior while using this API, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es).
+If you need support from us, please feel free to contact us at [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es) or at sofia2.com.
 
-You may also report bugs or suggest enhancements via `pull` requests.
+And if you want to contribute, send us a pull request.
 
 ## Installation instructions
 
-### Supported environments
-
-The SSAP C API has been tested in the following environments:
-
-* SuSE Linux, with i386 and AMD64 kernels, glibc 2.18+
-* Ubuntu Linux 12.04 LTS, using i386 and AMD64 kernels.
-* Ubuntu Linux 14.04 LTS, using i386 and AMD64 kernels.
-* Debian GNU/Linux 7, using ARM, i386 and AMD64 kernels.
-* Microsoft Windows 7, both 32 and 64 bit versions, Cygwin 1.7.32, Visual Studio 12 2013.
-
-This API relies solely on the GNU C library, the openSSL library and the POSIX standard, so it will work with other recent Linux distributions, UNIX-like operating systems and Windows (through Cygwin).
-
-Last, but not least, the API project must be built using CMake, version 2.8 or higher on UNIX systems only.
-
-## Linux installation instructions
-
-### Prerequisites
-
-Obviously, you'll need a working C development environment to use this API. You can use the command
-
-* `sudo apt-get install build-essential` under Ubuntu Linux or Debian, or
-* `zypper install -t pattern devel_C_C++` under SuSE Linux.
-
-You will also need to install CMake, version 2.8 or higher. You can use the following commands:
-
-* `sudo apt-get install cmake` under Ubuntu Linux or Debian, or
-* `zypper install cmake` under SuSE Linux.
-
-Finally, you'll have to install the OpenSSL and libuuid header files. You can use the command
-
-* `sudo apt-get install libssl-dev uuid-dev` under Ubuntu Linux or Debian, or
-* `zypper install libopenssl-devel libuuid-devel` under SuSE Linux.
-
-
-## IDE support
-
-You can import the C project on an IDE that includes CMake Integration, like Eclipse CDT or Kdevelop 4. The configuration instructions can be found here.
-
-The API package also includes a pre-generated Kdevelop 4 project in its root folder that can be used at your convenience.
-
-## Windows installation instructions
-
-### Prerequisites
-
-In order to compile the SSAP API in Windows, you must have a working Visual Studio 2013 installation. If you don't, you can download Visual Studio Express 2013 from Microsoft's website.
-
-You'll also have to install the following software at the default installation paths
-
-* the latest version of Cygwin.
-* the latest version of the Visual Studio C++ 2008 redistributable binaries.
-* the latest version of the precompiled OpenSSL library. Tell the installation wizard to put the binaries in the OpenSSL bin directory.
-
-### Warnings
-
-* Download and install either 32 or 64 bit binaries: do not mix them up! In any case, we recommend you to stick to the 32 bit binaries.
-* If you don't install the OpenSSL binaries in the default location or if you use the 64 bit versions, you'll have to change the paths of the OpenSSL include and bin directories at all the Visual Studio project configuration dialogs.
-
-
-### Visual Studio configuration
-
-After installing the required software, we recommend you to copy the extracted ssap folder to the root of a system drive (like `D:\`).
-
-Finally, you'll just have to open the `Windows Build/SSAP.sln` file and you'll be ready to go!
-
-Note If you create a new Visual Studio Project within the solution, don't forget to 
-* add the `ssap` and `cjson` projects as its dependencies,
-* disable the generation of precompiled headers, and
-* add the preprocessor definition `_CRT_SECURE_NO_WARNINGS`.
+See the API documentation (http://sofia2.github.io/c-api/).
