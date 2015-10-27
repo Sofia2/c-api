@@ -33,9 +33,9 @@ Este repositorio contiene los siguientes directorios:
 
 ## Información de contacto
 
-Si necesita recibir soporte, puede contactar con nosotros en sofia2.com o enviando un correo electrónico a [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es).
+Si necesita recibir soporte, puede contactar con nosotros en www.sofia2.com o enviando un correo electrónico a [plataformasofia2@indra.es](mailto:plataformasofia2@indra.es).
 
-Además, si desea contribuir al API C, no dude en enviarnos una pull request.
+Además, si desea contribuir al API, no dude en enviarnos una pull request.
 
 ## Installation instructions
 
