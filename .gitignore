@@ -30,3 +30,6 @@
 
 # Debug files
 *.dSYM/
+
+# Ignore Doxygen output directory
+docs/
