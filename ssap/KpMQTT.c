@@ -37,6 +37,18 @@
  * Auxiliary functions
  */
 
+void addTimeoutError(mqtt_connection* conn){
+    Thread_lock_mutex(conn->timeoutErrorsMutex);
+    conn->consecutiveTimeoutErrors++;
+    Thread_unlock_mutex(conn->timeoutErrorsMutex);
+}
+
+void clearTimeoutErrors(mqtt_connection* conn){
+    Thread_lock_mutex(conn->timeoutErrorsMutex);
+    conn->consecutiveTimeoutErrors = 0;
+    Thread_unlock_mutex(conn->timeoutErrorsMutex);
+}
+
 KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* payload, int timeout){
     MQTTClient_message pubmsg = MQTTClient_message_initializer;
     MQTTClient_deliveryToken token;
@@ -61,9 +73,14 @@ KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* 
             case MQTTCLIENT_FAILURE:
                 return DeliveryError_MqttClientNotInitialized;
             default:
+                addTimeoutError(connection);
+                if (connection->consecutiveTimeoutErrors == connection->maxConsecutiveTimeoutErrors){
+                    connection->lost = 1;                    
+                }
                 return DeliveryError_TimeoutError;
         }
-    }
+    } 
+    clearTimeoutErrors(connection);
     MQTTClient_message* aux=&pubmsg;
     MQTTClient_freeMessage(&aux);
 

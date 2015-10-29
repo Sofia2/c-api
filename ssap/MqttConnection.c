@@ -56,7 +56,10 @@ mqtt_connection* MqttConnection_allocate(){
         conn->connectTimeout = DEFAULT_CONNECT_TIMEOUT;
         conn->retryInterval = DEFAULT_RETRY_INTERVAL;
         conn->lost = 0;
+        conn->maxConsecutiveTimeoutErrors = DEFAULT_CONSECUTIVE_TIMEOUT_ERROR_THRESHOLD;
+        conn->consecutiveTimeoutErrors = 0;
         conn->watchdogMutex = NULL;
+        conn->timeoutErrorsMutex = Thread_create_mutex();
         return conn;
     }
 }
@@ -138,5 +141,10 @@ void MqttConnection_destroy(mqtt_connection* conn){
     if (conn->connectionEventsCallback != NULL){
         Thread_destroy_mutex(conn->watchdogMutex);
     }
+    Thread_destroy_mutex(conn->timeoutErrorsMutex);
     free(conn);    
+}
+
+void MqttConnection_setMaxConsecutiveTimeoutErrors(mqtt_connection* conn, int threshold){
+    conn->maxConsecutiveTimeoutErrors = threshold;    
 }

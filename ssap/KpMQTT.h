@@ -71,8 +71,8 @@ KPMQTTDLL_API typedef enum { CONNECTED, ///< The MQTT connection was established
   FAILED_PhysicalConnection, ///< The TCP connection with the SIB could not be established.
   FAILED_PhysicalConnection_BadCredentials, ///< The MQTT credentials were not correct.
   FAILED_PhysicalConnection_BadClientID, ///< The MQTT ClientID was not valid.
-  FAILED_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created 
-  FAILED_InternalError ///< An internal API error has occured
+  FAILED_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created .
+  FAILED_InternalError ///< An internal API error has occured.
 } ConnectionStatus;
 
 /**
@@ -92,7 +92,7 @@ KPMQTTDLL_API typedef enum {MessageSent, ///< The message was sent to the SIB su
   DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
   DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
   DeliveryError_MqttClientNotInitialized, ///< The MQTT client is not initialized.
-  DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost.
+  DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost. The message may have also have been delivered to the server.
 } KpMqtt_SendStatus;
 
 /**
