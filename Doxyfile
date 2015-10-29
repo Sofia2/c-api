@@ -58,7 +58,7 @@ PROJECT_BRIEF          = "C implementation of the Sofia2 SSAP API"
 # exceed 55 pixels and the maximum width should not exceed 200 pixels.
 # Doxygen will copy the logo to the output directory.
 
-PROJECT_LOGO           = "http://sofia2.com/img/logo_sofia2.png"
+PROJECT_LOGO           = "doc-resources/img/logo_sofia2.png"
 
 # The OUTPUT_DIRECTORY tag is used to specify the (relative or absolute)
 # base path where the generated documentation will be put.
@@ -908,7 +908,7 @@ HTML_FOOTER            =
 
 HTML_STYLESHEET        =
 
-HTML_EXTRA_STYLESHEET  = docs/resources/doxygen.override.css
+HTML_EXTRA_STYLESHEET  = doc-resources/css/doxygen.override.css
 
 # The HTML_EXTRA_FILES tag can be used to specify one or more extra images or
 # other source files which should be copied to the HTML output directory. Note
