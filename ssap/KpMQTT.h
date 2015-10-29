@@ -45,7 +45,6 @@
 #else
 #define KPMQTTDLL_API
 #endif
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -55,13 +54,13 @@ extern "C" {
  */
 
 #define WATCHDOG_TOPIC "MQTT_CONN_WATCHDOG" ///< Topic to be used by the MQTT connection watchdog.
-#define WATCHDOG_SEND_TIMEOUT 10000
-#define SIB_GW_TOPIC "CLIENT_TOPIC" ///< Topic to use when sending data to the SIB
-#define SSAP_RESPONSES_TOPIC "/TOPIC_MQTT_PUBLISH" ///< The topic that the SIB uses to answer us
-#define NOTIFICATIONS_TOPIC_LENGTH 19 ///< The length of the notifications topic
-#define SSAP_INDICATIONS_TOPIC "/TOPIC_MQTT_INDICATION" ///< The topic that the SIB uses to send subscription data
-#define SEND_TO_SIB_QOS_LEVEL 1 ///< The ordinary SSAP QoS level
-#define SUSCRIBE_QOS_LEVEL 2 ///< The subscription SSAP messages QoS level
+#define WATCHDOG_SEND_TIMEOUT 10000 ///< Send timeout used by the MQTT connection watchdog.
+#define SIB_GW_TOPIC "CLIENT_TOPIC" ///< Topic to use when sending data to the SIB.
+#define SSAP_RESPONSES_TOPIC "/TOPIC_MQTT_PUBLISH" ///< The topic that the SIB uses to answer us.
+#define NOTIFICATIONS_TOPIC_LENGTH 19 ///< The length of the notifications topic.
+#define SSAP_INDICATIONS_TOPIC "/TOPIC_MQTT_INDICATION" ///< The topic that the SIB uses to send subscription data.
+#define SEND_TO_SIB_QOS_LEVEL 1 ///< The ordinary SSAP QoS level.
+#define SUSCRIBE_QOS_LEVEL 2 ///< The subscription SSAP messages QoS level.
 
 /**
  * An enum type that describes the outcome of a connection process.
@@ -91,7 +90,6 @@ KPMQTTDLL_API typedef enum {DISCONNECTED, ///< The connection was closed properl
 KPMQTTDLL_API typedef enum {MessageSent, ///< The message was sent to the SIB successfully.
   DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
   DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
-  DeliveryError_MqttClientNotInitialized, ///< The MQTT client is not initialized.
   DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost. The message may have also have been delivered to the server.
 } KpMqtt_SendStatus;
 

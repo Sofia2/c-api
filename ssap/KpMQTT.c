@@ -57,7 +57,7 @@ KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* 
     pubmsg.qos = SEND_TO_SIB_QOS_LEVEL;
     pubmsg.retained = 0;
 
-    int prc = MQTTClient_publishMessage(connection->mqttClient, topic, &pubmsg, &token);
+    int prc = MQTTClient_publishMessage(connection->mqttClient, topic, &pubmsg, &token); // deadlock!
     if(prc != MQTTCLIENT_SUCCESS) {
         free((char*)payload);
         return DeliveryError_MalformedMqttMessage;
@@ -70,8 +70,6 @@ KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* 
             case MQTTCLIENT_DISCONNECTED:
                 connection->lost = 1;
                 return DeliveryError_ConnectionLost;
-            case MQTTCLIENT_FAILURE:
-                return DeliveryError_MqttClientNotInitialized;
             default:
                 addTimeoutError(connection);
                 if (connection->consecutiveTimeoutErrors == connection->maxConsecutiveTimeoutErrors){
