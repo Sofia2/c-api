@@ -46,6 +46,7 @@ extern "C" {
 #define DEFAULT_CLEANSESSION_FLAG 1 ///< The default value of the MQTT cleanSession flag.
 #define DEFAULT_CONNECT_TIMEOUT 30 ///< The default MQTT connect timeout in seconds.
 #define DEFAULT_RETRY_INTERVAL 20 ///< The default message delivery retry interval in seconds.
+#define MAX_MQTT_CLIENT_ID_LEN 23 ///< MQTT clientIDs must be between 1 and 23 bytes long.
     
     
 SSAP_MQTT_CONNECTION_API typedef enum {CONNECTION_LOST ///< Event type of detected MQTT disconnections.
@@ -166,6 +167,7 @@ SSAP_MQTT_CONNECTION_API typedef struct {
 /**
  * Initializes a MQTT connection.
  * @param clientId The MQTT clientId to be used.
+ * @note The memory of the clientId will NOT be freed after the connection is closed.
  * @param credentials The MQTT credentials to be used.
  * @param messageReceivedCallback A pointer to the function that will process all the incoming SSAP messages (except the INDICATION ones)
  * @param messageReceivedContext A pointer to the context (a.k.a. "state") structure used by the messageReceivedCallback function.
@@ -176,7 +178,7 @@ SSAP_MQTT_CONNECTION_API typedef struct {
  * @deprecated Use MqttConnection_allocate(), MqttConnection_setClientId(), MqttConnection_setRandomClientId(), MqttConnection_setCredentials(), 
  * MqttConnection_setSsapCallback() and MqttConnection_setConnectionEventsCallback() methods instead.
  */
-SSAP_MQTT_CONNECTION_API mqtt_connection* MqttConnection_allocated(char* clientId, mqtt_credentials* credentials, 
+SSAP_MQTT_CONNECTION_API mqtt_connection* MqttConnection_allocated(const char* clientId, mqtt_credentials* credentials,
                 genericSsapCallback* messageReceivedCallback, void* messageReceivedContext, 
                 connectionEventsCallback* connectionEventsCallback, void* connectionEventsContext);
 
@@ -190,14 +192,14 @@ SSAP_MQTT_CONNECTION_API mqtt_connection* MqttConnection_allocate();
  * Sets the MQTT clientId to be used.
  * @param conn The MQTT connection to be configured.
  * @param clientId The MQTT clientID to be used.
- * @note The memory of the clientId will be freed after the connection is closed.
+ * @note The memory of the clientId will NOT be freed after the connection is closed.
  * @see http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html, Section 3.1, before generating the 
  * clientId.
  */
-SSAP_MQTT_CONNECTION_API void MqttConnection_setClientId(mqtt_connection* conn, char* clientId);
+SSAP_MQTT_CONNECTION_API void MqttConnection_setClientId(mqtt_connection* conn, const char* clientId);
 
 /**
- * Sets the random MQTT clientId to be used.
+ * Configures the MQTT connection to use a random clientID.
  * @param conn The MQTT connection to be configured.
  * @note The memory of the clientId will be freed after the connection is closed.
  */

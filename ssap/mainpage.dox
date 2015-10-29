@@ -59,6 +59,7 @@
  * - Ubuntu Linux 12.04 LTS, using i386 and AMD64 kernels.
  * - Ubuntu Linux 14.04 LTS, using i386 and AMD64 kernels.
  * - Debian GNU/Linux 7, using ARM, i386 and AMD64 kernels.
+ * - Embedded devices with ARM A9v5 CPU (32 bit), using Linux kernel 2.6.39.4 and busybox 1.18.4.
  * - Microsoft Windows 7, both 32 and 64 bit versions, Cygwin 1.7.32, Visual Studio 12 2013.
  * 
  * This API relies solely on the GNU C library, the openSSL library and the POSIX standard, so it will work with other recent Linux distributions, 
@@ -117,6 +118,7 @@
  * \example deletes.c
  * \example inserts.c
  * \example join-leave.c
+ * \example join-leave-ssl.c
  * \example queries.c
  * \example subscribes.c
  * \example updates.c

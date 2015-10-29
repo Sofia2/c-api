@@ -30,7 +30,7 @@
 ssap_message* allocateSsapMessage();
 void freeMap(map_t *params);
 
-ssap_message* generateJoinMessage(char* token, char* instance){
+ssap_message* generateJoinMessage(const char* token, const char* instance){
     ssap_message* joinMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -52,7 +52,7 @@ ssap_message* generateJoinMessage(char* token, char* instance){
 }
 
 
-ssap_message* generateJoinRenewSessionMessage(char* token, char* instance, char* sessionKey){
+ssap_message* generateJoinRenewSessionMessage(const char* token, const char* instance, const char* sessionKey){
     ssap_message* joinMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -74,7 +74,7 @@ ssap_message* generateJoinRenewSessionMessage(char* token, char* instance, char*
     return joinMessage;
 }
 
-ssap_message* generateLeaveMessage(char* sessionKey){
+ssap_message* generateLeaveMessage(const char* sessionKey){
     
     ssap_message* leaveMessage = allocateSsapMessage();
   
@@ -90,11 +90,11 @@ ssap_message* generateLeaveMessage(char* sessionKey){
         
 }
 
-ssap_message* generateInsertMessage(char* sessionKey, char* ontology, char* data){
+ssap_message* generateInsertMessage(const char* sessionKey, const char* ontology, const char* data){
     return generateInsertMessageWithQueryType(sessionKey, ontology, data, NATIVE);
 }
 
-ssap_message* generateInsertMessageWithQueryType(char* sessionKey, char* ontology, char* data, SSAPQueryType queryType){
+ssap_message* generateInsertMessageWithQueryType(const char* sessionKey, const char* ontology, const char* data, SSAPQueryType queryType){
     ssap_message* insertMessage = allocateSsapMessage();
     cJSON *body;    
     body=cJSON_CreateObject();    
@@ -138,11 +138,11 @@ ssap_message* generateInsertMessageWithQueryType(char* sessionKey, char* ontolog
     return insertMessage;
 }
 
-ssap_message* generateUpdateMessage(char* sessionKey, char* ontology, char* query){
+ssap_message* generateUpdateMessage(const char* sessionKey, const char* ontology, const char* query){
     return generateUpdateMessageWithQueryType(sessionKey, ontology, query, NATIVE);
 }
 
-ssap_message* generateUpdateMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType){
+ssap_message* generateUpdateMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType){
     ssap_message* updateMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -184,11 +184,11 @@ ssap_message* generateUpdateMessageWithQueryType(char* sessionKey, char* ontolog
     return updateMessage;
 }
 
-ssap_message* generateDeleteMessage(char* sessionKey, char* ontology, char* query){
+ssap_message* generateDeleteMessage(const char* sessionKey, const char* ontology, const char* query){
     return generateDeleteMessageWithQueryType(sessionKey, ontology, query, NATIVE);
 }
 
-ssap_message* generateDeleteMessageWithQueryType(char * sessionKey, char* ontology, char* query, SSAPQueryType queryType){
+ssap_message* generateDeleteMessageWithQueryType(const char * sessionKey, const char* ontology, const char* query, SSAPQueryType queryType){
     ssap_message* removeMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -227,11 +227,11 @@ ssap_message* generateDeleteMessageWithQueryType(char * sessionKey, char* ontolo
     return removeMessage;
 }
 
-ssap_message* generateQueryMessage(char* sessionKey, char* ontology, char* query){
+ssap_message* generateQueryMessage(const char* sessionKey, const char* ontology, const char* query){
     return generateQueryMessageWithQueryType(sessionKey, ontology, query, NATIVE);
 }
 
-ssap_message* generateQueryMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType){
+ssap_message* generateQueryMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType){
     ssap_message* queryMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -280,7 +280,7 @@ ssap_message* generateQueryMessageWithQueryType(char* sessionKey, char* ontology
     return queryMessage;
 }
 
-ssap_message* generateSIBDefinedQueryMessageWithParams(char* sessionKey, char* query, map_t *params){
+ssap_message* generateSIBDefinedQueryMessageWithParams(const char* sessionKey, const char* query, map_t *params){
     ssap_message* queryMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -316,7 +316,7 @@ ssap_message* generateSIBDefinedQueryMessageWithParams(char* sessionKey, char* q
     return queryMessage;
 }
 
-ssap_message* generateSubscribeMessage(char* sessionKey, char* ontology, char* query, int msRefresh){
+ssap_message* generateSubscribeMessage(const char* sessionKey, const char* ontology, const char* query, int msRefresh){
     ssap_message* subscribeMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -344,7 +344,7 @@ ssap_message* generateSubscribeMessage(char* sessionKey, char* ontology, char* q
 }
 
 
-ssap_message* generateSubscribeMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType, int msRefresh){
+ssap_message* generateSubscribeMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType, int msRefresh){
     ssap_message* subscribeMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -396,7 +396,7 @@ ssap_message* generateSubscribeMessageWithQueryType(char* sessionKey, char* onto
 }
 
 
-ssap_message* generateSIBDefinedSubscribeMessageWithParam(char* sessionKey, char* query, map_t *params){
+ssap_message* generateSIBDefinedSubscribeMessageWithParam(const char* sessionKey, const char* query, map_t *params){
     ssap_message* queryMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -432,7 +432,7 @@ ssap_message* generateSIBDefinedSubscribeMessageWithParam(char* sessionKey, char
     return queryMessage;
 }
 
-ssap_message* generateUnsubscribeMessage(char* sessionKey, char* ontology, char* suscriptionId){
+ssap_message* generateUnsubscribeMessage(const char* sessionKey, const char* ontology, const char* suscriptionId){
     ssap_message* unsubscribeMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -556,7 +556,7 @@ char* ssap_messageToJson(ssap_message* message){
     return retorno;
 }
 
-ssap_message* ssapMessageFromJson(char* source){
+ssap_message* ssapMessageFromJson(const char* source){
 
     ssap_message* message = allocateSsapMessage();
     
@@ -592,6 +592,8 @@ ssap_message* ssapMessageFromJson(char* source){
         } else {
             message->direction=ERROR;                
         }
+	} else {
+		message->direction=ERROR;
     }
     
     
@@ -626,6 +628,8 @@ ssap_message* ssapMessageFromJson(char* source){
         } else if (strcasecmp(messageType->valuestring, "CONFIG") == 0){
            message->messageType=CONFIG;      
         }
+	} else {
+        message->messageType=LEAVE;
     }
     
     if(ontology == NULL || ontology->valuestring==NULL){
@@ -659,7 +663,7 @@ map_t* createEmptyMap(size_t size){
   return result;
 }
 
-int pushKeyValuePair(char* key, char *value, map_t* params){
+int pushKeyValuePair(const char* key, const char *value, map_t* params){
   if (params->size == params->max_size)
     return 0;
   keyValuePair *tmp = &(params->data[params->size]);
@@ -717,7 +721,7 @@ void freeBulkRequest(bulkRequest* request){
 
 
 
-ssap_message* generateBulkMessage(char* sessionKey, char* ontology, bulkRequest* request){
+ssap_message* generateBulkMessage(const char* sessionKey, const char* ontology, bulkRequest* request){
     ssap_message* bulkMessage = allocateSsapMessage();
     cJSON *body;
     
@@ -747,7 +751,7 @@ ssap_message* generateBulkMessage(char* sessionKey, char* ontology, bulkRequest*
     return bulkMessage;
 }
 
-ssap_message* generateConfigMessage(char* kp, char* instance, char* token, char* assetService, map_t* assetServiceParam) {
+ssap_message* generateConfigMessage(const char* kp, const char* instance, const char* token, const char* assetService, map_t* assetServiceParam) {
     ssap_message* configMessage = allocateSsapMessage();
     cJSON *body;
     cJSON* assetServiceParam_json = NULL;

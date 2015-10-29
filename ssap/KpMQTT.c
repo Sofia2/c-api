@@ -123,8 +123,8 @@ int onMqttMessageReceived(void* context, char* topicName, int topicLen, MQTTClie
     return 1;
 }
 
-ConnectionStatus establishConnection(mqtt_connection* connection, char* server, char* port, 
-                                     char* ca_file, char* ca_path) {
+ConnectionStatus establishConnection(mqtt_connection* connection, const char* server, const char* port,
+                                     const char* ca_file, const char* ca_path) {
     
     char* address = (char*) malloc((strlen("tcp://")+strlen(server)+strlen(":")+strlen(port)+1)*sizeof(char));
     
@@ -224,13 +224,7 @@ ConnectionStatus establishConnection(mqtt_connection* connection, char* server, 
     return CONNECTED;
 }
 
-char* preProcessClientId(char* clientId){
-    char* clientId_copy = (char*) malloc(24 * sizeof(char));
-    strncpy(clientId_copy, clientId, 23);
-    return clientId_copy;    
-}
-
-ConnectionStatus KpMqtt_connectd(char* server, char* port, mqtt_credentials* credentials, 
+ConnectionStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
                                 genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                 void* connectionEventsCallback, void* connectionEventsContext,
                                 mqtt_connection** created_connection) {
@@ -239,11 +233,11 @@ ConnectionStatus KpMqtt_connectd(char* server, char* port, mqtt_credentials* cre
     return KpMqtt_connectSSL(created_connection, server, port, NULL, NULL);
 }
 
-KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, char* server, char* port){
+KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port){
     return KpMqtt_connectSSL(connection, server, port, NULL, NULL);
 }
 
-ConnectionStatus KpMqtt_connectSSLd(char* server, char* port, mqtt_credentials* credentials, char* ca_file, char* ca_path, 
+ConnectionStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials, const char* ca_file, const char* ca_path,
                                    genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                    void* connectionEventsCallback, void* connectionEventsContext,
                                    mqtt_connection** created_connection){
@@ -252,8 +246,8 @@ ConnectionStatus KpMqtt_connectSSLd(char* server, char* port, mqtt_credentials* 
     return KpMqtt_connectSSL(created_connection, server, port, ca_file, ca_path);
 }
 
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, char* server, char* port, 
-                                                char* ca_file, char* ca_path){
+KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
+                                                const char* ca_file, const char* ca_path){
     ConnectionStatus retval = establishConnection(*connection, server, port, ca_file, ca_path);
     if (retval != CONNECTED)
         *connection = NULL;
@@ -328,7 +322,7 @@ void setIndicationListener(mqtt_connection* connection, ssapIndicationCallback* 
     KpMqtt_setIndicationListener(connection, callback, callbackContext);
 }
 
-mqtt_credentials* KpMqtt_buildCredentials(char* username, char* password){
+mqtt_credentials* KpMqtt_buildCredentials(const char* username, const char* password){
   mqtt_credentials* result = (mqtt_credentials*) malloc(sizeof(mqtt_credentials));
   result->username = malloc((strlen(username) + 1) * sizeof(char));
   strcpy(result->username, username);
@@ -337,7 +331,7 @@ mqtt_credentials* KpMqtt_buildCredentials(char* username, char* password){
   return result;
 }
 
-mqtt_credentials* buildCredentials(char* username, char* password){
+mqtt_credentials* buildCredentials(const char* username, const char* password){
     return KpMqtt_buildCredentials(username, password);
 }
 

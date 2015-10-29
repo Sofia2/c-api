@@ -118,7 +118,7 @@ KPMQTTDLL_API typedef struct {
  * @return A ConnectionStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connect() instead.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(char* server, char* port, mqtt_credentials* credentials, 
+KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
                                 genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                 void* connectionEventsCallback, void* connectionEventsContext,
                                 mqtt_connection** created_connection);
@@ -131,7 +131,7 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(char* server, char* port, mqtt_cr
  * @param port The SIB MQTT port
  * @return A ConnectionStatus enum value representing the result of the connection process.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, char* server, char* port);
+KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port);
 
 /**
  * Establishes a MQTT over SSL connection with the SIB.
@@ -153,8 +153,8 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, char
  * @return A ConnectionStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connectSSL() instead.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(char* server, char* port, mqtt_credentials* credentials, 
-                                                  char* ca_file, char* ca_path, 
+KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials,
+                                                  const char* ca_file, const char* ca_path,
                                    genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                    void* connectionEventsCallback, void* connectionEventsContext,
                                    mqtt_connection** created_connection);
@@ -170,8 +170,8 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(char* server, char* port, mqtt
  * @warning You must pass either the ca_file or the ca_path parameter to this function.
  * @return A ConnectionStatus enum value representing the result of the connection process.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, char* server, char* port, 
-                                                char* ca_file, char* ca_path);
+KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
+                                                const char* ca_file, const char* ca_path);
 
 /**
  * Closes an MQTT connection with the SIB.
@@ -214,9 +214,8 @@ KPMQTTDLL_API void setIndicationListener(mqtt_connection* connection, ssapIndica
  * @param username The MQTT username to use.
  * @param password The MQTT password to use.
  * @return A MQTT credentials structure initialized with the given arguments. The arguments will be copied.
- * @deprecated Use KpMqtt_buildCredentials() instead.
  */
-KPMQTTDLL_API mqtt_credentials* KpMqtt_buildCredentials(char* username, char*password);
+KPMQTTDLL_API mqtt_credentials* KpMqtt_buildCredentials(const char* username, const char*password);
 
 /**
  * Builds an username and password-based MQTT credentials structure.
@@ -225,7 +224,7 @@ KPMQTTDLL_API mqtt_credentials* KpMqtt_buildCredentials(char* username, char*pas
  * @return A MQTT credentials structure initialized with the given arguments. The arguments will be copied.
  * @deprecated Use KpMqtt_buildCredentials() instead.
  */
-KPMQTTDLL_API mqtt_credentials* buildCredentials(char* username, char*password);
+KPMQTTDLL_API mqtt_credentials* buildCredentials(const char* username, const char*password);
 
 /**
  * Frees the memory used by the OpenSSL library.

@@ -33,3 +33,9 @@
 
 # Ignore Doxygen output directory
 docs/
+
+# Ignore CMake build directory
+build/
+
+# Ignore KDevelop project data
+*.kdev4

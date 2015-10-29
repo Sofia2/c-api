@@ -178,7 +178,7 @@ typedef struct{
  * to the Sofia2 platform
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateJoinMessage(char* token, char* instance);
+SSAPMSGGEN_API ssap_message* generateJoinMessage(const char* token, const char* instance);
 
 
 /**
@@ -189,7 +189,7 @@ SSAPMSGGEN_API ssap_message* generateJoinMessage(char* token, char* instance);
  * @param sessionKey The unique identifier of the session
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateJoinRenewSessionMessage(char* token, char* instance, char* sessionKey);
+SSAPMSGGEN_API ssap_message* generateJoinRenewSessionMessage(const char* token, const char* instance, const char* sessionKey);
 
 
 /**
@@ -197,7 +197,7 @@ SSAPMSGGEN_API ssap_message* generateJoinRenewSessionMessage(char* token, char* 
  * @param sessionKey The unique identifier of the session
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateLeaveMessage(char* sessionKey);
+SSAPMSGGEN_API ssap_message* generateLeaveMessage(const char* sessionKey);
 
 /**
  * Builds an insert message
@@ -206,7 +206,7 @@ SSAPMSGGEN_API ssap_message* generateLeaveMessage(char* sessionKey);
  * @param data The data to insert in the target ontology
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateInsertMessage(char* sessionKey, char* ontology, char* data);
+SSAPMSGGEN_API ssap_message* generateInsertMessage(const char* sessionKey, const char* ontology, const char* data);
 
 /**
  * Builds an insert message
@@ -220,7 +220,7 @@ SSAPMSGGEN_API ssap_message* generateInsertMessage(char* sessionKey, char* ontol
  * \code{.sql}INSERT INTO Ontology(name) VALUES ('foo');\endcode
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateInsertMessageWithQueryType(char* sessionKey, char* ontology, char* data, SSAPQueryType queryType);
+SSAPMSGGEN_API ssap_message* generateInsertMessageWithQueryType(const char* sessionKey, const char* ontology, const char* data, SSAPQueryType queryType);
 
 /**
  * Builds an update message
@@ -229,7 +229,7 @@ SSAPMSGGEN_API ssap_message* generateInsertMessageWithQueryType(char* sessionKey
  * @param query The query that selects the documents that will be updated.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateUpdateMessage(char* sessionKey, char* ontology, char* query);
+SSAPMSGGEN_API ssap_message* generateUpdateMessage(const char* sessionKey, const char* ontology, const char* query);
 
 /**
  * Builds an update message
@@ -239,7 +239,7 @@ SSAPMSGGEN_API ssap_message* generateUpdateMessage(char* sessionKey, char* ontol
  * @param queryType The query tipe of the update operation. It determines the data syntax.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateUpdateMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType);
+SSAPMSGGEN_API ssap_message* generateUpdateMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType);
 
 /**
  * Builds a delete message
@@ -248,7 +248,7 @@ SSAPMSGGEN_API ssap_message* generateUpdateMessageWithQueryType(char* sessionKey
  * @param query The query that selects the documents that will be deleted.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateDeleteMessage(char* sessionKey, char* ontology, char* query);
+SSAPMSGGEN_API ssap_message* generateDeleteMessage(const char* sessionKey, const char* ontology, const char* query);
 
 /**
  * Builds a delete message
@@ -258,7 +258,7 @@ SSAPMSGGEN_API ssap_message* generateDeleteMessage(char* sessionKey, char* ontol
  * @param queryType The query tipe of the delete operation.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateDeleteMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType);
+SSAPMSGGEN_API ssap_message* generateDeleteMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType);
 
 /**
  * Builds a query message
@@ -267,7 +267,7 @@ SSAPMSGGEN_API ssap_message* generateDeleteMessageWithQueryType(char* sessionKey
  * @param query The query that selects the documents that will be returned.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateQueryMessage(char* sessionKey, char* ontology, char* query);
+SSAPMSGGEN_API ssap_message* generateQueryMessage(const char* sessionKey, const char* ontology, const char* query);
 
 /**
  * Builds a query message
@@ -277,7 +277,7 @@ SSAPMSGGEN_API ssap_message* generateQueryMessage(char* sessionKey, char* ontolo
  * @param queryType The query tipe of the query operation.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateQueryMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType);
+SSAPMSGGEN_API ssap_message* generateQueryMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType);
 
 
 /**
@@ -287,7 +287,7 @@ SSAPMSGGEN_API ssap_message* generateQueryMessageWithQueryType(char* sessionKey,
  * @param params A map_t structure containing the parameters of the query
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateSIBDefinedQueryMessageWithParams(char* sessionKey, char* query, map_t* params);
+SSAPMSGGEN_API ssap_message* generateSIBDefinedQueryMessageWithParams(const char* sessionKey, const char* query, map_t* params);
 
 
 /**
@@ -299,7 +299,7 @@ SSAPMSGGEN_API ssap_message* generateSIBDefinedQueryMessageWithParams(char* sess
  * with the result of the query.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateSubscribeMessage(char* sessionKey, char* ontology, char* query, int refreshMs);
+SSAPMSGGEN_API ssap_message* generateSubscribeMessage(const char* sessionKey, const char* ontology, const char* query, int refreshMs);
 
 /**
  * Builds a subscribe message
@@ -311,7 +311,7 @@ SSAPMSGGEN_API ssap_message* generateSubscribeMessage(char* sessionKey, char* on
  * with the result of the query.
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateSubscribeMessageWithQueryType(char* sessionKey, char* ontology, char* query, SSAPQueryType queryType, int refreshMs);
+SSAPMSGGEN_API ssap_message* generateSubscribeMessageWithQueryType(const char* sessionKey, const char* ontology, const char* query, SSAPQueryType queryType, int refreshMs);
 
 
 /**
@@ -321,7 +321,7 @@ SSAPMSGGEN_API ssap_message* generateSubscribeMessageWithQueryType(char* session
  * @param subscriptionId The unique identifier of the subscription
  * @return The generated SSAP message.
  */
-SSAPMSGGEN_API ssap_message* generateUnsubscribeMessage(char* sessionKey, char* ontology, char* subscriptionId);
+SSAPMSGGEN_API ssap_message* generateUnsubscribeMessage(const char* sessionKey, const char* ontology, const char* subscriptionId);
 
 /**
  * Creates an empty map_t structure able to hold up to size key-value pairs.
@@ -338,7 +338,7 @@ SSAPMSGGEN_API map_t* createEmptyMap(size_t size);
  * @return true if the key-value pair was added to the structure, and false otherwise.
  * <br><b>Notice</b></br> If the map_t structure is full, nothing will be done.
  */
-SSAPMSGGEN_API int pushKeyValuePair(char* key, char *value, map_t* params);
+SSAPMSGGEN_API int pushKeyValuePair(const char* key, const char *value, map_t* params);
 
 /**
  * Frees the memory of a ssap_message structure. DO NOT USE THIS METHOD IN CLIENT CODE!
@@ -357,7 +357,7 @@ char* ssap_messageToJson(ssap_message* message);
  * @param source The serialized JSON data to parse
  * @return A ssap_message structure
  */
-SSAPMSGGEN_API ssap_message* ssapMessageFromJson(char* source);
+SSAPMSGGEN_API ssap_message* ssapMessageFromJson(const char* source);
 
 /**
  * Creates an empty bulk request of a given size
@@ -385,7 +385,7 @@ SSAPMSGGEN_API int addToBulkRequest(ssap_message* message, bulkRequest* request)
  * @param request A structure that holds the messages of the bulk request.
  * @return The SSAP bulk message.
  */
-SSAPMSGGEN_API ssap_message* generateBulkMessage(char* sessionKey, char* ontology, bulkRequest* request);
+SSAPMSGGEN_API ssap_message* generateBulkMessage(const char* sessionKey, const char* ontology, bulkRequest* request);
 
 /**
  * Builds a SSAP CONFIG message
@@ -397,7 +397,7 @@ SSAPMSGGEN_API ssap_message* generateBulkMessage(char* sessionKey, char* ontolog
  * <br><b>Notice</b></br> The memory of the asset service parameters map will be freed
  * @return A SSAP CONFIG message.
  */
-SSAPMSGGEN_API ssap_message* generateConfigMessage(char* kp, char* instance, char* token, char* assetService, map_t* assetServiceParam);
+SSAPMSGGEN_API ssap_message* generateConfigMessage(const char* kp, const char* instance, const char* token, const char* assetService, map_t* assetServiceParam);
 
 #ifdef __cplusplus
 }
