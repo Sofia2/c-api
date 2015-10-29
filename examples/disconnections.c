@@ -1,8 +1,8 @@
 /**
   @examples disconnections.c
   @author Indra Sistemas S.A.
-  @date Oct 20 2015
-  @version 4.1
+  @date Oct 29 2015
+  @version 4.2
   @brief An example on detecting disconnections from the SIB server asynchronously.
   @copyright Copyright 2013-15 Indra Sistemas S.A.
 

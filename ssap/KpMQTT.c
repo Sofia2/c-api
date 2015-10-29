@@ -3,8 +3,8 @@
   @author Indra Sistemas S.A.
   @author Carlo Gavazzi Automation S.p.A.
   @author Circutor S.A.
-  @date Oct 20 2015
-  @version 4.1
+  @date Oct 29 2015
+  @version 4.2
   @brief Functions that handle MQTT connections to the SIB.
 
   This file implements a bunch of functions that handle MQTT connections to the SIB.
