@@ -21,6 +21,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen.override.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -28,9 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_sofia2.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">SSAP API, C Implementation
-   &#160;<span id="projectnumber">4.1</span>
+   &#160;<span id="projectnumber">4.2</span>
    </div>
    <div id="projectbrief">C implementation of the Sofia2 SSAP API</div>
   </td>
@@ -104,6 +106,9 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
 <li>KPMQTTDLL_API
 : <a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KpMQTT.h</a>
 </li>
+<li>MAX_MQTT_CLIENT_ID_LEN
+: <a class="el" href="MqttConnection_8h.html#a39e8fdd30625f5df151befb43e9826d3">MqttConnection.h</a>
+</li>
 <li>NOTIFICATIONS_TOPIC_LENGTH
 : <a class="el" href="KpMQTT_8h.html#a6965bcb0941f3814eb9d1d3981561c9d">KpMQTT.h</a>
 </li>
@@ -143,7 +148,7 @@ $(document).ready(function(){initNavTree('globals_defs.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Oct 27 2015 11:32:01 for SSAP API, C Implementation by
+    <li class="footer">Generated on Thu Oct 29 2015 12:53:18 for SSAP API, C Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

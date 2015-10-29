@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>SSAP API, C Implementation: config.c</title>
+<title>SSAP API, C Implementation: join-leave-ssl.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('config_8c-example.html','');});
+$(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('config_8c-example.html','');});
 
 <div class="header">
   <div class="headertitle">
-<div class="title">config.c</div>  </div>
+<div class="title">join-leave-ssl.c</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"></div>
@@ -103,19 +103,26 @@ $(document).ready(function(){initNavTree('config_8c-example.html','');});
 <div class="line"></div>
 <div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">  <span class="keywordtype">char</span>* sessionKey;</div>
-<div class="line">  <span class="keyword">volatile</span> <span class="keywordtype">int</span> config_received;</div>
+<div class="line">  <span class="keyword">volatile</span> <span class="keywordtype">int</span> leave;</div>
+<div class="line">  <span class="keyword">volatile</span> <span class="keywordtype">int</span> disconnect;</div>
 <div class="line">} context_t;</div>
 <div class="line"></div>
 <div class="line"><span class="keywordtype">void</span> messageReceivedHandler(<a name="_a0"></a><a class="code" href="structssap__message.html">ssap_message</a>* response, <span class="keywordtype">void</span>* context){</div>
 <div class="line">  context_t* typed_context = (context_t*) context;</div>
 <div class="line">  <span class="keywordflow">switch</span> (response-&gt;<a name="a1"></a><a class="code" href="structssap__message.html#a6e68069526c05e37fef039dd306760a7">messageType</a>) {</div>
-<div class="line">    <span class="keywordflow">case</span> <a name="a2"></a><a class="code" href="SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664a702582f7f825ca83bdb076b15b4c0fc2">CONFIG</a>:</div>
-<div class="line">      printf(<span class="stringliteral">&quot;A CONFIG response was received!\n&quot;</span>);</div>
-<div class="line">      printf(<span class="stringliteral">&quot;Response body: %s\n&quot;</span>, response-&gt;<a name="a3"></a><a class="code" href="structssap__message.html#ac9ed661843388d23b79bef3b4a0d7440">body</a>);</div>
-<div class="line">          typed_context-&gt;config_received = 1;</div>
+<div class="line">    <span class="keywordflow">case</span> <a name="a2"></a><a class="code" href="SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664a4925a399dab94b9b58f6d1b5cd246af7">JOIN</a>:</div>
+<div class="line">      printf(<span class="stringliteral">&quot;A JOIN response was received\n&quot;</span>);</div>
+<div class="line">      printf(<span class="stringliteral">&quot;Session key: %s\n&quot;</span>, response-&gt;<a name="a3"></a><a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>);</div>
+<div class="line">      typed_context-&gt;sessionKey = (<span class="keywordtype">char</span>*) malloc((strlen(response-&gt;<a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>) + 1) * <span class="keyword">sizeof</span>(char));</div>
+<div class="line">      strcpy(typed_context-&gt;sessionKey, response-&gt;<a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>);</div>
+<div class="line">          typed_context-&gt;leave = 1;</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
-<div class="line">        <span class="keywordflow">default</span>:</div>
-<div class="line">                <span class="keywordflow">break</span>;</div>
+<div class="line">    <span class="keywordflow">case</span> <a name="a4"></a><a class="code" href="SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664ae09e07839103de682cb13fa773793fc0">LEAVE</a>:</div>
+<div class="line">      printf(<span class="stringliteral">&quot;A LEAVE response was received!\n&quot;</span>);</div>
+<div class="line">          typed_context-&gt;disconnect = 1;</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
+<div class="line">    <span class="keywordflow">default</span>:</div>
+<div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">  }  </div>
 <div class="line">  <span class="keywordflow">return</span>;  </div>
 <div class="line">}</div>
@@ -123,31 +130,46 @@ $(document).ready(function(){initNavTree('config_8c-example.html','');});
 <div class="line"><span class="keywordtype">int</span> main(){</div>
 <div class="line">  context_t* context = malloc(<span class="keyword">sizeof</span>(context_t));</div>
 <div class="line">  context-&gt;sessionKey = NULL;</div>
-<div class="line">  context-&gt;config_received = 0;</div>
+<div class="line">  context-&gt;leave = 0;</div>
+<div class="line">  context-&gt;disconnect = 1;</div>
 <div class="line"></div>
-<div class="line">  printf(<span class="stringliteral">&quot;Example: send a CONFIG message to the SIB.\n&quot;</span>);</div>
-<div class="line">  <a name="_a4"></a><a class="code" href="structmqtt__connection.html">mqtt_connection</a>* connection = <a name="a5"></a><a class="code" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a>();</div>
-<div class="line">  <a name="a6"></a><a class="code" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110">MqttConnection_setRandomClientId</a>(connection);</div>
-<div class="line">  <a name="a7"></a><a class="code" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a">MqttConnection_setSsapCallback</a>(connection, messageReceivedHandler, (<span class="keywordtype">void</span>*) context);</div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a> status = <a name="a8"></a><a class="code" href="KpMQTT_8h.html#a18499fce3a35bbedcf2eaec7a156cbb5">KpMqtt_connect</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;1880&quot;</span>);</div>
-<div class="line">  <span class="keywordflow">if</span> (status != <a name="a9"></a><a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a7a691a2430ec26878897b5fbc9c22a4c">CONNECTED</a>){</div>
-<div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong...\n&quot;</span>);    </div>
-<div class="line">  }</div>
-<div class="line"></div>
-<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *configMessage = <a name="a10"></a><a class="code" href="SsapMessageGenerator_8h.html#a6c1588cfec9f17a6a725dc4960d216cd">generateConfigMessage</a>(<span class="stringliteral">&quot;KPvisualizacionHT&quot;</span>, <span class="stringliteral">&quot;KPvisualizacionHT01&quot;</span>, <span class="stringliteral">&quot;cbb9364c434543a18dc6efa30dc780eb&quot;</span>, NULL, NULL);</div>
+<div class="line">  printf(<span class="stringliteral">&quot;Example: establish and close a MQTT over SSL connection with the SIB.\n&quot;</span>);</div>
+<div class="line">  <a name="_a5"></a><a class="code" href="structmqtt__connection.html">mqtt_connection</a>* connection = <a name="a6"></a><a class="code" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a>();</div>
+<div class="line">  <a name="a7"></a><a class="code" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110">MqttConnection_setRandomClientId</a>(connection);</div>
+<div class="line">  <a name="a8"></a><a class="code" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a">MqttConnection_setSsapCallback</a>(connection, messageReceivedHandler, (<span class="keywordtype">void</span>*) context);</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a> status = <a name="a9"></a><a class="code" href="KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d">KpMqtt_connectSSL</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;8883&quot;</span>, NULL, <span class="stringliteral">&quot;/etc/ssl/certs&quot;</span>);</div>
+<div class="line">  <span class="keywordflow">if</span> (status != <a name="a10"></a><a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a7a691a2430ec26878897b5fbc9c22a4c">CONNECTED</a>){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong...\n&quot;</span>);</div>
+<div class="line">  }  </div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15">SendStatus</a> send_status = <a name="a11"></a><a class="code" href="KpMQTT_8h.html#af5535969acf249144246152a88fc55e2">KpMqtt_send</a>(connection, configMessage, 1000);</div>
-<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a12"></a><a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b">SENT</a>){</div>
-<div class="line">    printf(<span class="stringliteral">&quot;The CONFIG message was sent\n&quot;</span>);   </div>
-<div class="line">  }</div>
+<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *joinMessage = <a name="a11"></a><a class="code" href="SsapMessageGenerator_8h.html#a8eb3483515f92b49c69378422cefa0db">generateJoinMessage</a>(<span class="stringliteral">&quot;2cbbe5655fcb4545be5039fc6fb511de&quot;</span>, <span class="stringliteral">&quot;KpName:KpName01&quot;</span>);</div>
 <div class="line">  </div>
-<div class="line">  <span class="keywordflow">while</span> (!context-&gt;config_received)</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15">SendStatus</a> send_status = <a name="a12"></a><a class="code" href="KpMQTT_8h.html#af5535969acf249144246152a88fc55e2">KpMqtt_send</a>(connection, joinMessage, 1000);</div>
+<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a13"></a><a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b">SENT</a>){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;The JOIN message was sent\n&quot;</span>);   </div>
+<div class="line">  }   </div>
+<div class="line">  <span class="keywordflow">while</span> (context-&gt;sessionKey == NULL)</div>
 <div class="line">        sleep(1);</div>
 <div class="line">  </div>
-<div class="line">  <a name="a13"></a><a class="code" href="KpMQTT_8h.html#ad1f21f13ce9c17d41d47f3ed3a57a5eb">KpMqtt_disconnect</a>(connection, 1000);  </div>
+<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *leaveMessage = <a name="a14"></a><a class="code" href="SsapMessageGenerator_8h.html#af8c80c301697824ec192cda37843ace2">generateLeaveMessage</a>(context-&gt;sessionKey);</div>
+<div class="line">  </div>
+<div class="line">  send_status = <a class="code" href="KpMQTT_8h.html#af5535969acf249144246152a88fc55e2">KpMqtt_send</a>(connection, leaveMessage, 1000);</div>
+<div class="line">  <span class="keywordflow">if</span> (send_status == <a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b">SENT</a>){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;The LEAVE message was sent\n&quot;</span>);   </div>
+<div class="line">  } </div>
+<div class="line">  </div>
+<div class="line">  <span class="keywordflow">while</span> (!context-&gt;disconnect)</div>
+<div class="line">        sleep(1);</div>
+<div class="line">  </div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91">DisconnectionStatus</a> status1 = <a name="a15"></a><a class="code" href="KpMQTT_8h.html#ad1f21f13ce9c17d41d47f3ed3a57a5eb">KpMqtt_disconnect</a>(connection, 100);</div>
+<div class="line">  <span class="keywordflow">if</span> (status1 != <a name="a16"></a><a class="code" href="KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91acdaad1112073e3e2ea032424c38c34e1">DISCONNECTED</a>){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong while disconnecting from the SIB...\n&quot;</span>);    </div>
+<div class="line">  } </div>
+<div class="line">  </div>
+<div class="line">  free(context-&gt;sessionKey);</div>
 <div class="line">  free(context); </div>
-<div class="line">  printf(<span class="stringliteral">&quot;Exit!\n&quot;</span>);</div>
-<div class="line">  <a name="a14"></a><a class="code" href="KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b">KpMqtt_freeOpenSSLTables</a>();  </div>
+<div class="line">  printf(<span class="stringliteral">&quot;Exit!\n&quot;</span>);  </div>
+<div class="line">  <a name="a17"></a><a class="code" href="KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b">KpMqtt_freeOpenSSLTables</a>();</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->

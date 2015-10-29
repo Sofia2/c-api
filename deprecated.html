@@ -21,6 +21,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen.override.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -28,9 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_sofia2.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">SSAP API, C Implementation
-   &#160;<span id="projectnumber">4.1</span>
+   &#160;<span id="projectnumber">4.2</span>
    </div>
    <div id="projectbrief">C implementation of the Sofia2 SSAP API</div>
   </td>
@@ -93,16 +95,14 @@ $(document).ready(function(){initNavTree('deprecated.html','');});
 </div><!--header-->
 <div class="contents">
 <div class="textblock"><dl class="reflist">
-<dt><a class="anchor" id="_deprecated000005"></a>Global <a class="el" href="KpMQTT_8h.html#a147ab88c34304ae185f6b0b1a2b423d5">buildCredentials</a>  (char *username, char *password)</dt>
-<dd>Use <a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead.  </dd>
-<dt><a class="anchor" id="_deprecated000004"></a>Global <a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0">KpMqtt_buildCredentials</a>  (char *username, char *password)</dt>
-<dd>Use <a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead.  </dd>
-<dt><a class="anchor" id="_deprecated000001"></a>Global <a class="el" href="KpMQTT_8h.html#a5b7009f9cd7473f8ef00c5ed725bd10b">KpMqtt_connectd</a>  (char *server, char *port, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, genericSsapCallback *messageReceivedCallback, void *callbackContext, void *connectionEventsCallback, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</dt>
-<dd>Use <a class="el" href="KpMQTT_8h.html#addf1cee639a9d80886468e860b8c97d7" title="Establishes a non-cyphered MQTT connection with the SIB. ">KpMqtt_connect()</a> instead.  </dd>
-<dt><a class="anchor" id="_deprecated000002"></a>Global <a class="el" href="KpMQTT_8h.html#ad3d347caace2e90a9b21d384c7e9fb95">KpMqtt_connectSSLd</a>  (char *server, char *port, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, char *ca_file, char *ca_path, genericSsapCallback *messageReceivedCallback, void *callbackContext, void *connectionEventsCallback, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</dt>
-<dd>Use <a class="el" href="KpMQTT_8h.html#aa1cd3f6c1765c7a0f65b7a5c6605c13c" title="Establishes a MQTT over SSL connection with the SIB. ">KpMqtt_connectSSL()</a> instead.  </dd>
-<dt><a class="anchor" id="_deprecated000006"></a>Global <a class="el" href="MqttConnection_8h.html#a0992ddd4f3bf0afb2e7906ab6b73a564">MqttConnection_allocated</a>  (char *clientId, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, genericSsapCallback *messageReceivedCallback, void *messageReceivedContext, connectionEventsCallback *connectionEventsCallback, void *connectionEventsContext)</dt>
-<dd>Use <a class="el" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7" title="Allocates the memory of a MQTT connection. ">MqttConnection_allocate()</a>, <a class="el" href="MqttConnection_8h.html#a042dce8df9e26af199091d7af1882aad" title="Sets the MQTT clientId to be used. ">MqttConnection_setClientId()</a>, <a class="el" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110" title="Sets the random MQTT clientId to be used. ">MqttConnection_setRandomClientId()</a>, <a class="el" href="MqttConnection_8h.html#aa530fd2494c0a1a67ae9b2ae244c27d1" title="Sets the MQTT credentials to be used. ">MqttConnection_setCredentials()</a>, <a class="el" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a" title="Sets the callback function that will handle the incoming SSAP messages. ">MqttConnection_setSsapCallback()</a> and <a class="el" href="MqttConnection_8h.html#ae40f53446bdcf83498439ecef958cb64" title="Sets the callback function that will handle the MQTT connection events. ">MqttConnection_setConnectionEventsCallback()</a> methods instead.  </dd>
+<dt><a class="anchor" id="_deprecated000004"></a>Global <a class="el" href="KpMQTT_8h.html#a4f56091765fda7c894fd678db659c845">buildCredentials</a>  (const char *username, const char *password)</dt>
+<dd>Use <a class="el" href="KpMQTT_8h.html#aad809ad24e12c2a6e4a0cac49131c995" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead.  </dd>
+<dt><a class="anchor" id="_deprecated000001"></a>Global <a class="el" href="KpMQTT_8h.html#abd2ed7d8b9dd349488c43dda0d29a598">KpMqtt_connectd</a>  (const char *server, const char *port, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, genericSsapCallback *messageReceivedCallback, void *callbackContext, void *connectionEventsCallback, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</dt>
+<dd>Use <a class="el" href="KpMQTT_8h.html#a18499fce3a35bbedcf2eaec7a156cbb5" title="Establishes a non-cyphered MQTT connection with the SIB. ">KpMqtt_connect()</a> instead.  </dd>
+<dt><a class="anchor" id="_deprecated000002"></a>Global <a class="el" href="KpMQTT_8h.html#a8fc08652368728e37dea7a59dc8f4d8b">KpMqtt_connectSSLd</a>  (const char *server, const char *port, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, const char *ca_file, const char *ca_path, genericSsapCallback *messageReceivedCallback, void *callbackContext, void *connectionEventsCallback, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</dt>
+<dd>Use <a class="el" href="KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d" title="Establishes a MQTT over SSL connection with the SIB. ">KpMqtt_connectSSL()</a> instead.  </dd>
+<dt><a class="anchor" id="_deprecated000005"></a>Global <a class="el" href="MqttConnection_8h.html#a9fbcd888394748d34afa166d5fdcd50a">MqttConnection_allocated</a>  (const char *clientId, <a class="el" href="structmqtt__credentials.html" title="This structure contains the credentials that will be used when establishing a MQTT connection...">mqtt_credentials</a> *credentials, genericSsapCallback *messageReceivedCallback, void *messageReceivedContext, connectionEventsCallback *connectionEventsCallback, void *connectionEventsContext)</dt>
+<dd>Use <a class="el" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7" title="Allocates the memory of a MQTT connection. ">MqttConnection_allocate()</a>, <a class="el" href="MqttConnection_8h.html#a919fe7bab81973646b4f0e7798d260b1" title="Sets the MQTT clientId to be used. ">MqttConnection_setClientId()</a>, <a class="el" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110" title="Configures the MQTT connection to use a random clientID. ">MqttConnection_setRandomClientId()</a>, <a class="el" href="MqttConnection_8h.html#aa530fd2494c0a1a67ae9b2ae244c27d1" title="Sets the MQTT credentials to be used. ">MqttConnection_setCredentials()</a>, <a class="el" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a" title="Sets the callback function that will handle the incoming SSAP messages. ">MqttConnection_setSsapCallback()</a> and <a class="el" href="MqttConnection_8h.html#ae40f53446bdcf83498439ecef958cb64" title="Sets the callback function that will handle the MQTT connection events. ">MqttConnection_setConnectionEventsCallback()</a> methods instead.  </dd>
 <dt><a class="anchor" id="_deprecated000003"></a>Global <a class="el" href="KpMQTT_8h.html#a17ce378f6dc282c2cad711896a6ce791">setIndicationListener</a>  (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> *connection, ssapIndicationCallback *callback, void *callbackContext)</dt>
 <dd>Use <a class="el" href="KpMQTT_8h.html#a998718f3bde4ed2f6ba64c73c97e93ba" title="Registers the indication listener on a MQTT connection. ">KpMqtt_setIndicationListener()</a> instead. </dd>
 </dl>
@@ -111,7 +111,7 @@ $(document).ready(function(){initNavTree('deprecated.html','');});
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Tue Oct 27 2015 11:32:01 for SSAP API, C Implementation by
+    <li class="footer">Generated on Thu Oct 29 2015 12:53:18 for SSAP API, C Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

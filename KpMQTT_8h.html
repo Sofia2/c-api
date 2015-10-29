@@ -21,6 +21,7 @@
   $(document).ready(function() { searchBox.OnSelectItem(0); });
 </script>
 <link href="doxygen.css" rel="stylesheet" type="text/css" />
+<link href="doxygen.override.css" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 <div id="top"><!-- do not remove this div, it is closed by doxygen! -->
@@ -28,9 +29,10 @@
 <table cellspacing="0" cellpadding="0">
  <tbody>
  <tr style="height: 56px;">
+  <td id="projectlogo"><img alt="Logo" src="logo_sofia2.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">SSAP API, C Implementation
-   &#160;<span id="projectnumber">4.1</span>
+   &#160;<span id="projectnumber">4.2</span>
    </div>
    <div id="projectbrief">C implementation of the Sofia2 SSAP API</div>
   </td>
@@ -175,18 +177,18 @@ Enumerations</h2></td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="func-members"></a>
 Functions</h2></td></tr>
-<tr class="memitem:a5b7009f9cd7473f8ef00c5ed725bd10b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a5b7009f9cd7473f8ef00c5ed725bd10b">KpMqtt_connectd</a> (char *server, char *port, <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *credentials, <a class="el" href="MqttConnection_8h.html#afcd4418156eb17b79888e3079cb86f11">genericSsapCallback</a> *messageReceivedCallback, void *callbackContext, void *<a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a>, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</td></tr>
-<tr class="memdesc:a5b7009f9cd7473f8ef00c5ed725bd10b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a non-cyphered MQTT connection with the SIB.  <a href="#a5b7009f9cd7473f8ef00c5ed725bd10b">More...</a><br /></td></tr>
-<tr class="separator:a5b7009f9cd7473f8ef00c5ed725bd10b"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:addf1cee639a9d80886468e860b8c97d7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#addf1cee639a9d80886468e860b8c97d7">KpMqtt_connect</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> **connection, char *server, char *port)</td></tr>
-<tr class="memdesc:addf1cee639a9d80886468e860b8c97d7"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a non-cyphered MQTT connection with the SIB.  <a href="#addf1cee639a9d80886468e860b8c97d7">More...</a><br /></td></tr>
-<tr class="separator:addf1cee639a9d80886468e860b8c97d7"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:ad3d347caace2e90a9b21d384c7e9fb95"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#ad3d347caace2e90a9b21d384c7e9fb95">KpMqtt_connectSSLd</a> (char *server, char *port, <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *credentials, char *ca_file, char *ca_path, <a class="el" href="MqttConnection_8h.html#afcd4418156eb17b79888e3079cb86f11">genericSsapCallback</a> *messageReceivedCallback, void *callbackContext, void *<a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a>, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</td></tr>
-<tr class="memdesc:ad3d347caace2e90a9b21d384c7e9fb95"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a MQTT over SSL connection with the SIB.  <a href="#ad3d347caace2e90a9b21d384c7e9fb95">More...</a><br /></td></tr>
-<tr class="separator:ad3d347caace2e90a9b21d384c7e9fb95"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:aa1cd3f6c1765c7a0f65b7a5c6605c13c"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#aa1cd3f6c1765c7a0f65b7a5c6605c13c">KpMqtt_connectSSL</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> **connection, char *server, char *port, char *ca_file, char *ca_path)</td></tr>
-<tr class="memdesc:aa1cd3f6c1765c7a0f65b7a5c6605c13c"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a MQTT over SSL connection with the SIB.  <a href="#aa1cd3f6c1765c7a0f65b7a5c6605c13c">More...</a><br /></td></tr>
-<tr class="separator:aa1cd3f6c1765c7a0f65b7a5c6605c13c"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:abd2ed7d8b9dd349488c43dda0d29a598"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#abd2ed7d8b9dd349488c43dda0d29a598">KpMqtt_connectd</a> (const char *server, const char *port, <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *credentials, <a class="el" href="MqttConnection_8h.html#afcd4418156eb17b79888e3079cb86f11">genericSsapCallback</a> *messageReceivedCallback, void *callbackContext, void *<a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a>, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</td></tr>
+<tr class="memdesc:abd2ed7d8b9dd349488c43dda0d29a598"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a non-cyphered MQTT connection with the SIB.  <a href="#abd2ed7d8b9dd349488c43dda0d29a598">More...</a><br /></td></tr>
+<tr class="separator:abd2ed7d8b9dd349488c43dda0d29a598"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a18499fce3a35bbedcf2eaec7a156cbb5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a18499fce3a35bbedcf2eaec7a156cbb5">KpMqtt_connect</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> **connection, const char *server, const char *port)</td></tr>
+<tr class="memdesc:a18499fce3a35bbedcf2eaec7a156cbb5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a non-cyphered MQTT connection with the SIB.  <a href="#a18499fce3a35bbedcf2eaec7a156cbb5">More...</a><br /></td></tr>
+<tr class="separator:a18499fce3a35bbedcf2eaec7a156cbb5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a8fc08652368728e37dea7a59dc8f4d8b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a8fc08652368728e37dea7a59dc8f4d8b">KpMqtt_connectSSLd</a> (const char *server, const char *port, <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *credentials, const char *ca_file, const char *ca_path, <a class="el" href="MqttConnection_8h.html#afcd4418156eb17b79888e3079cb86f11">genericSsapCallback</a> *messageReceivedCallback, void *callbackContext, void *<a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a>, void *connectionEventsContext, <a class="el" href="structmqtt__connection.html">mqtt_connection</a> **created_connection)</td></tr>
+<tr class="memdesc:a8fc08652368728e37dea7a59dc8f4d8b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a MQTT over SSL connection with the SIB.  <a href="#a8fc08652368728e37dea7a59dc8f4d8b">More...</a><br /></td></tr>
+<tr class="separator:a8fc08652368728e37dea7a59dc8f4d8b"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a79013f9a33ade5fd6c743293ca06169d"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d">KpMqtt_connectSSL</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> **connection, const char *server, const char *port, const char *ca_file, const char *ca_path)</td></tr>
+<tr class="memdesc:a79013f9a33ade5fd6c743293ca06169d"><td class="mdescLeft">&#160;</td><td class="mdescRight">Establishes a MQTT over SSL connection with the SIB.  <a href="#a79013f9a33ade5fd6c743293ca06169d">More...</a><br /></td></tr>
+<tr class="separator:a79013f9a33ade5fd6c743293ca06169d"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:ad1f21f13ce9c17d41d47f3ed3a57a5eb"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91">DisconnectionStatus</a>&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#ad1f21f13ce9c17d41d47f3ed3a57a5eb">KpMqtt_disconnect</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> *connection, int timeout)</td></tr>
 <tr class="memdesc:ad1f21f13ce9c17d41d47f3ed3a57a5eb"><td class="mdescLeft">&#160;</td><td class="mdescRight">Closes an MQTT connection with the SIB.  <a href="#ad1f21f13ce9c17d41d47f3ed3a57a5eb">More...</a><br /></td></tr>
 <tr class="separator:ad1f21f13ce9c17d41d47f3ed3a57a5eb"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -199,12 +201,12 @@ Functions</h2></td></tr>
 <tr class="memitem:a17ce378f6dc282c2cad711896a6ce791"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a17ce378f6dc282c2cad711896a6ce791">setIndicationListener</a> (<a class="el" href="structmqtt__connection.html">mqtt_connection</a> *connection, <a class="el" href="MqttConnection_8h.html#a68a4225be34219345b7726c1b99f9355">ssapIndicationCallback</a> *callback, void *callbackContext)</td></tr>
 <tr class="memdesc:a17ce378f6dc282c2cad711896a6ce791"><td class="mdescLeft">&#160;</td><td class="mdescRight">Registers the indication listener on a MQTT connection.  <a href="#a17ce378f6dc282c2cad711896a6ce791">More...</a><br /></td></tr>
 <tr class="separator:a17ce378f6dc282c2cad711896a6ce791"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a3e97eb23d7499c1b0ea9248f31a6fae0"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0">KpMqtt_buildCredentials</a> (char *username, char *password)</td></tr>
-<tr class="memdesc:a3e97eb23d7499c1b0ea9248f31a6fae0"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an username and password-based MQTT credentials structure.  <a href="#a3e97eb23d7499c1b0ea9248f31a6fae0">More...</a><br /></td></tr>
-<tr class="separator:a3e97eb23d7499c1b0ea9248f31a6fae0"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a147ab88c34304ae185f6b0b1a2b423d5"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a147ab88c34304ae185f6b0b1a2b423d5">buildCredentials</a> (char *username, char *password)</td></tr>
-<tr class="memdesc:a147ab88c34304ae185f6b0b1a2b423d5"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an username and password-based MQTT credentials structure.  <a href="#a147ab88c34304ae185f6b0b1a2b423d5">More...</a><br /></td></tr>
-<tr class="separator:a147ab88c34304ae185f6b0b1a2b423d5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:aad809ad24e12c2a6e4a0cac49131c995"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#aad809ad24e12c2a6e4a0cac49131c995">KpMqtt_buildCredentials</a> (const char *username, const char *password)</td></tr>
+<tr class="memdesc:aad809ad24e12c2a6e4a0cac49131c995"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an username and password-based MQTT credentials structure.  <a href="#aad809ad24e12c2a6e4a0cac49131c995">More...</a><br /></td></tr>
+<tr class="separator:aad809ad24e12c2a6e4a0cac49131c995"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a4f56091765fda7c894fd678db659c845"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a4f56091765fda7c894fd678db659c845">buildCredentials</a> (const char *username, const char *password)</td></tr>
+<tr class="memdesc:a4f56091765fda7c894fd678db659c845"><td class="mdescLeft">&#160;</td><td class="mdescRight">Builds an username and password-based MQTT credentials structure.  <a href="#a4f56091765fda7c894fd678db659c845">More...</a><br /></td></tr>
+<tr class="separator:a4f56091765fda7c894fd678db659c845"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a3651864a3ebb2cfeac1a698158ee304b"><td class="memItemLeft" align="right" valign="top"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b">KpMqtt_freeOpenSSLTables</a> ()</td></tr>
 <tr class="memdesc:a3651864a3ebb2cfeac1a698158ee304b"><td class="mdescLeft">&#160;</td><td class="mdescRight">Frees the memory used by the OpenSSL library.  <a href="#a3651864a3ebb2cfeac1a698158ee304b">More...</a><br /></td></tr>
 <tr class="separator:a3651864a3ebb2cfeac1a698158ee304b"><td class="memSeparator" colspan="2">&#160;</td></tr>
@@ -216,8 +218,8 @@ Functions</h2></td></tr>
 Carlo Gavazzi Automation S.p.A. </dd>
 <dd>
 Circutor S.A. </dd></dl>
-<dl class="section date"><dt>Date</dt><dd>Oct 20 2015 </dd></dl>
-<dl class="section version"><dt>Version</dt><dd>4.1 </dd></dl>
+<dl class="section date"><dt>Date</dt><dd>Oct 29 2015 </dd></dl>
+<dl class="section version"><dt>Version</dt><dd>4.2 </dd></dl>
 <dl class="section see"><dt>See also</dt><dd><a href="http://sofia2.com/desarrollador_en.html">http://sofia2.com/desarrollador_en.html</a></dd></dl>
 <dl class="section copyright"><dt>Copyright</dt><dd>Copyright 2013-15 Indra Sistemas S.A.</dd></dl>
 <p>Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at </p><pre class="fragment">http://www.apache.org/licenses/LICENSE-2.0
@@ -434,20 +436,20 @@ Circutor S.A. </dd></dl>
 </div>
 </div>
 <h2 class="groupheader">Function Documentation</h2>
-<a class="anchor" id="a147ab88c34304ae185f6b0b1a2b423d5"></a>
+<a class="anchor" id="a4f56091765fda7c894fd678db659c845"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a>* buildCredentials </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>username</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>password</em>&#160;</td>
         </tr>
         <tr>
@@ -467,24 +469,24 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A MQTT credentials structure initialized with the given arguments. The arguments will be copied. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#aad809ad24e12c2a6e4a0cac49131c995" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="a3e97eb23d7499c1b0ea9248f31a6fae0"></a>
+<a class="anchor" id="aad809ad24e12c2a6e4a0cac49131c995"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a>* KpMqtt_buildCredentials </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>username</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>password</em>&#160;</td>
         </tr>
         <tr>
@@ -504,11 +506,10 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A MQTT credentials structure initialized with the given arguments. The arguments will be copied. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000004">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#a3e97eb23d7499c1b0ea9248f31a6fae0" title="Builds an username and password-based MQTT credentials structure. ">KpMqtt_buildCredentials()</a> instead. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="addf1cee639a9d80886468e860b8c97d7"></a>
+<a class="anchor" id="a18499fce3a35bbedcf2eaec7a156cbb5"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -521,13 +522,13 @@ Circutor S.A. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>port</em>&#160;</td>
         </tr>
         <tr>
@@ -553,20 +554,20 @@ Circutor S.A. </dd></dl>
 </dl>
 </div>
 </div>
-<a class="anchor" id="a5b7009f9cd7473f8ef00c5ed725bd10b"></a>
+<a class="anchor" id="abd2ed7d8b9dd349488c43dda0d29a598"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a> KpMqtt_connectd </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>port</em>, </td>
         </tr>
         <tr>
@@ -629,11 +630,11 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A ConnectionStatus enum value representing the result of the connection process. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#addf1cee639a9d80886468e860b8c97d7" title="Establishes a non-cyphered MQTT connection with the SIB. ">KpMqtt_connect()</a> instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000001">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#a18499fce3a35bbedcf2eaec7a156cbb5" title="Establishes a non-cyphered MQTT connection with the SIB. ">KpMqtt_connect()</a> instead. </dd></dl>
 
 </div>
 </div>
-<a class="anchor" id="aa1cd3f6c1765c7a0f65b7a5c6605c13c"></a>
+<a class="anchor" id="a79013f9a33ade5fd6c743293ca06169d"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
@@ -646,25 +647,25 @@ Circutor S.A. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>port</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>ca_file</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>ca_path</em>&#160;</td>
         </tr>
         <tr>
@@ -689,23 +690,24 @@ Circutor S.A. </dd></dl>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>You must pass either the ca_file or the ca_path parameter to this function. </dd></dl>
 <dl class="section return"><dt>Returns</dt><dd>A ConnectionStatus enum value representing the result of the connection process. </dd></dl>
-
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="join-leave-ssl_8c-example.html#a9">join-leave-ssl.c</a>.</dd>
+</dl>
 </div>
 </div>
-<a class="anchor" id="ad3d347caace2e90a9b21d384c7e9fb95"></a>
+<a class="anchor" id="a8fc08652368728e37dea7a59dc8f4d8b"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname"><a class="el" href="KpMQTT_8h.html#aa6ff17a9f8517d62d635de23e8be85bb">KPMQTTDLL_API</a> <a class="el" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a> KpMqtt_connectSSLd </td>
           <td>(</td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>server</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>port</em>, </td>
         </tr>
         <tr>
@@ -717,13 +719,13 @@ Circutor S.A. </dd></dl>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>ca_file</em>, </td>
         </tr>
         <tr>
           <td class="paramkey"></td>
           <td></td>
-          <td class="paramtype">char *&#160;</td>
+          <td class="paramtype">const char *&#160;</td>
           <td class="paramname"><em>ca_path</em>, </td>
         </tr>
         <tr>
@@ -788,7 +790,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A ConnectionStatus enum value representing the result of the connection process. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#aa1cd3f6c1765c7a0f65b7a5c6605c13c" title="Establishes a MQTT over SSL connection with the SIB. ">KpMqtt_connectSSL()</a> instead. </dd></dl>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000002">Deprecated:</a></b></dt><dd>Use <a class="el" href="KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d" title="Establishes a MQTT over SSL connection with the SIB. ">KpMqtt_connectSSL()</a> instead. </dd></dl>
 
 </div>
 </div>
@@ -825,7 +827,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A DisconnectionStatus enum value representing the result of the disconnection process. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a24">bulk.c</a>, <a class="el" href="config_8c-example.html#a13">config.c</a>, <a class="el" href="deletes_8c-example.html#a19">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a17">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a20">inserts.c</a>, <a class="el" href="join-leave_8c-example.html#a15">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a25">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a23">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a20">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a24">bulk.c</a>, <a class="el" href="config_8c-example.html#a13">config.c</a>, <a class="el" href="deletes_8c-example.html#a19">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a17">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a20">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a15">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a15">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a25">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a23">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a20">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -844,7 +846,7 @@ Circutor S.A. </dd></dl>
 
 <p>Frees the memory used by the OpenSSL library. </p>
 <dl class="section note"><dt>Note</dt><dd>This function is not thread safe. Call it before exiting from the main thread. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a26">bulk.c</a>, <a class="el" href="config_8c-example.html#a14">config.c</a>, <a class="el" href="deletes_8c-example.html#a21">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a19">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a22">inserts.c</a>, <a class="el" href="join-leave_8c-example.html#a17">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a27">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a25">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a22">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a26">bulk.c</a>, <a class="el" href="config_8c-example.html#a14">config.c</a>, <a class="el" href="deletes_8c-example.html#a21">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a19">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a22">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a17">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a17">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a27">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a25">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a22">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -888,7 +890,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section return"><dt>Returns</dt><dd>A SendStatus enum value representing the status of the send operation. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a14">bulk.c</a>, <a class="el" href="config_8c-example.html#a11">config.c</a>, <a class="el" href="deletes_8c-example.html#a13">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a15">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a14">inserts.c</a>, <a class="el" href="join-leave_8c-example.html#a12">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a14">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a16">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a14">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a14">bulk.c</a>, <a class="el" href="config_8c-example.html#a11">config.c</a>, <a class="el" href="deletes_8c-example.html#a13">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a15">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a14">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a12">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a12">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a14">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a16">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a14">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -984,7 +986,7 @@ Circutor S.A. </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_ebaa9c422e2faa7d2f93e66b1a6315cd.html">ssap</a></li><li class="navelem"><a class="el" href="KpMQTT_8h.html">KpMQTT.h</a></li>
-    <li class="footer">Generated on Tue Oct 27 2015 11:32:01 for SSAP API, C Implementation by
+    <li class="footer">Generated on Thu Oct 29 2015 12:53:18 for SSAP API, C Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

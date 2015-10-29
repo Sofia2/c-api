@@ -1,0 +1,9 @@
+# General elements
+
+body 			 { color: #333;}
+a 				 { color: #00b0ca; text-decoration: none; }
+a:hover, a:focus { color: #006d7e; text-decoration: underline; }
+
+# Footer
+
+.navpath ul { background:none;}
