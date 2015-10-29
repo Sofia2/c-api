@@ -83,8 +83,8 @@ int main(){
   
   ssap_message *joinMessage = generateJoinMessage(TOKEN, KP);
   
-  SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == SENT){
+  KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
+  if (send_status == MessageSent){
     printf("The JOIN message has been sent\n");   
   }
   
@@ -93,7 +93,7 @@ int main(){
   
   ssap_message *removeMessage = generateDeleteMessage(context->sessionKey, ONTOLOGY, NATIVE_DELETE);
   send_status = KpMqtt_send(connection, removeMessage, 1000);
-  if (send_status == SENT)
+  if (send_status == MessageSent)
 	  printf("The NATIVE DELETE message was sent\n");
   
   while (!context->delete_received)
@@ -102,7 +102,7 @@ int main(){
   context->delete_received = 0;
   removeMessage = generateDeleteMessageWithQueryType(context->sessionKey, ONTOLOGY, SQLLIKE_DELETE, SQLLIKE);
   send_status = KpMqtt_send(connection, removeMessage, 1000);
-  if (send_status == SENT)
+  if (send_status == MessageSent)
 	  printf("The SQL-Like DELETE message was sent\n");
   
   while (!context->delete_received)
@@ -111,7 +111,7 @@ int main(){
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == SENT){
+  if (send_status == MessageSent){
     printf("The LEAVE message has been sent\n");   
   }
 

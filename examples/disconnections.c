@@ -74,8 +74,8 @@ int main(){
   
   ssap_message *joinMessage = generateJoinMessage("859ff38deae8442d90d3a525a0d837dd", "KP_Drone_Joystick:KP_Drone_Joystick01");
   
-  SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == SENT){
+  KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
+  if (send_status == MessageSent){
     printf("The JOIN message was sent\n");   
   }   
   while (context->sessionKey == NULL)

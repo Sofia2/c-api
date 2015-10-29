@@ -87,8 +87,8 @@ int main(){
   
   ssap_message *joinMessage = generateJoinMessage(TOKEN, KP);
   
-  SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == SENT){
+  KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
+  if (send_status == MessageSent){
     printf("JOIN message sent\n");   
   }
   
@@ -99,7 +99,7 @@ int main(){
   ssap_message *queryMessage = generateQueryMessageWithQueryType(context->sessionKey, ONTOLOGY, SQLLIKE_QUERY, SQLLIKE);
   send_status = KpMqtt_send(connection, queryMessage, 1000);
   
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("NATIVE QUERY message sent\n");
   }
 
@@ -111,7 +111,7 @@ int main(){
   queryMessage = generateQueryMessage(context->sessionKey, ONTOLOGY, NATIVE_QUERY);
   send_status = KpMqtt_send(connection, queryMessage, 1000);
 
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("SQL-Like QUERY message sent\n");
   }
   
@@ -123,7 +123,7 @@ int main(){
   queryMessage = generateQueryMessageWithQueryType(context->sessionKey, ONTOLOGY, SIB_DEFINED_QUERY, SIB_DEFINED);
   send_status = KpMqtt_send(connection, queryMessage, 1000);
   
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("SIB-defined QUERY message sent\n");
   }
 
@@ -137,7 +137,7 @@ int main(){
   queryMessage = generateSIBDefinedQueryMessageWithParams(context->sessionKey, SIB_DEFINED_QUERY_WITH_PARAMS, params);
   send_status = KpMqtt_send(connection, queryMessage, 1000);
   
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("SIB-defined QUERY with parameters message sent\n");
   }
 
@@ -147,7 +147,7 @@ int main(){
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == SENT){
+  if (send_status == MessageSent){
     printf("LEAVE message sent\n");   
   }
 

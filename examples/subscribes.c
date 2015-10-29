@@ -117,8 +117,8 @@ int main(){
   ssap_message *joinMessage = generateJoinMessage(TOKEN, KP);
   printf("The JOIN message has been generated\n");
   
-  SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == SENT){
+  KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
+  if (send_status == MessageSent){
     printf("The JOIN message has been sent\n");   
   }
   
@@ -128,7 +128,7 @@ int main(){
   ssap_message *subscribeMessage = generateSubscribeMessage(context->sessionKey, ONTOLOGY, NATIVE_SUBSCRIPTION_CRITERION, 1000);
   setIndicationListener(connection, indicationReceivedCallback, context);
   send_status = KpMqtt_send(connection, subscribeMessage, 1000);
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("The SUBSCRIBE message has been sent\n");
   }
   
@@ -138,7 +138,7 @@ int main(){
   printf("Sending data to the SIB\n");  
   ssap_message *insertMessage = generateInsertMessage(context->sessionKey,ONTOLOGY, NATIVE_INSERT_DATA);
   send_status = KpMqtt_send(connection, insertMessage, 1000);
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("The INSERT message has been sent\n");
   }
   
@@ -149,14 +149,14 @@ int main(){
   ssap_message *unsubscribeMessage = generateUnsubscribeMessage(context->sessionKey, ONTOLOGY, context->subscriptionId);
   send_status = KpMqtt_send(connection, unsubscribeMessage, 1000);
 
-  if (send_status == SENT){
+  if (send_status == MessageSent){
 	  printf("The UNSUBSCRIBE MESSAGE has been sent\n");
   }
  
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == SENT){
+  if (send_status == MessageSent){
     printf("The LEAVE message has been sent\n");   
   }
   

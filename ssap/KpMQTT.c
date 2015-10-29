@@ -37,7 +37,7 @@
  * Auxiliary functions
  */
 
-SendStatus publish(mqtt_connection* connection, const char* topic, char* payload, int timeout){
+KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* payload, int timeout){
     MQTTClient_message pubmsg = MQTTClient_message_initializer;
     MQTTClient_deliveryToken token;
     pubmsg.payload = payload;
@@ -48,22 +48,27 @@ SendStatus publish(mqtt_connection* connection, const char* topic, char* payload
     int prc = MQTTClient_publishMessage(connection->mqttClient, topic, &pubmsg, &token);
     if(prc != MQTTCLIENT_SUCCESS) {
         free((char*)payload);
-        connection->lost = 1;
-        return FAILED_SendMessage;
+        return DeliveryError_MalformedMqttMessage;
     }
 
-    int wrc=MQTTClient_waitForCompletion(connection->mqttClient, token, timeout);
+    int wrc = MQTTClient_waitForCompletion(connection->mqttClient, token, timeout);
     if(wrc != MQTTCLIENT_SUCCESS) {
         free((char*)payload);
-        connection->lost = 1;
-        return FAILED_SIBReceptionConfirmation;
+        switch (wrc){
+            case MQTTCLIENT_DISCONNECTED:
+                connection->lost = 1;
+                return DeliveryError_ConnectionLost;
+            case MQTTCLIENT_FAILURE:
+                return DeliveryError_MqttClientNotInitialized;
+            default:
+                return DeliveryError_TimeoutError;
+        }
     }
     MQTTClient_message* aux=&pubmsg;
     MQTTClient_freeMessage(&aux);
 
     free((char*)payload);
-
-    return SENT;
+    return MessageSent;
 }
 
 void onMqttConnectionEvent(void* context, char* cause){
@@ -306,7 +311,7 @@ DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout) 
     }
 }
 
-SendStatus KpMqtt_send(mqtt_connection* connection, ssap_message* request, int timeout) {
+KpMqtt_SendStatus KpMqtt_send(mqtt_connection* connection, ssap_message* request, int timeout) {
     //Pasa el mensaje a JSON
     char* payload = ssap_messageToJson(request);
     freeSsapMessage(request);

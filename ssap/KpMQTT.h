@@ -55,7 +55,7 @@ extern "C" {
  */
 
 #define WATCHDOG_TOPIC "MQTT_CONN_WATCHDOG" ///< Topic to be used by the MQTT connection watchdog.
-#define WATCHDOG_SEND_TIMEOUT 5000
+#define WATCHDOG_SEND_TIMEOUT 10000
 #define SIB_GW_TOPIC "CLIENT_TOPIC" ///< Topic to use when sending data to the SIB
 #define SSAP_RESPONSES_TOPIC "/TOPIC_MQTT_PUBLISH" ///< The topic that the SIB uses to answer us
 #define NOTIFICATIONS_TOPIC_LENGTH 19 ///< The length of the notifications topic
@@ -88,10 +88,12 @@ KPMQTTDLL_API typedef enum {DISCONNECTED, ///< The connection was closed properl
 /**
  * An enum type that describes the outcome of a message delivery operation.
  */
-KPMQTTDLL_API typedef enum {SENT, ///< The MQTT message was sent to the SIB
-  FAILED_SendMessage, ///< The MQTT message could not be sent to the SIB 
-  FAILED_SIBReceptionConfirmation ///< The MQTT delivery acknowledge was not received from the SIB
-} SendStatus;
+KPMQTTDLL_API typedef enum {MessageSent, ///< The message was sent to the SIB successfully.
+  DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
+  DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
+  DeliveryError_MqttClientNotInitialized, ///< The MQTT client is not initialized.
+  DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost.
+} KpMqtt_SendStatus;
 
 /**
  * This structure stores the result of a MQTT connection operation
@@ -188,9 +190,9 @@ KPMQTTDLL_API DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection,
  * @param request A pointer to the SSAP message to send. Its memory will be freed
  * 	after sending the message.
  * @param timeout The timeout to send the message to the SIB in milliseconds.
- * @return A SendStatus enum value representing the status of the send operation.
+ * @return A KpMqtt_SendStatus enum value representing the status of the send operation.
  */
-KPMQTTDLL_API SendStatus KpMqtt_send(mqtt_connection* connection, ssap_message* request, int timeout);
+KPMQTTDLL_API KpMqtt_SendStatus KpMqtt_send(mqtt_connection* connection, ssap_message* request, int timeout);
 
 /**
  * Registers the indication listener on a MQTT connection.
