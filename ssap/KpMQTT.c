@@ -193,8 +193,8 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
 
     // Create & subscribe to the topic of this KP.
     char* topic= (char*) malloc((strlen(SSAP_RESPONSES_TOPIC)+strlen(connection->clientId)+1)*sizeof(char));
-        if (topic == NULL)
-                return ConnectError_InternalError;
+    if (topic == NULL)
+        return ConnectError_InternalError;
     strcpy(topic,SSAP_RESPONSES_TOPIC);
     strcat(topic, connection->clientId);
 
