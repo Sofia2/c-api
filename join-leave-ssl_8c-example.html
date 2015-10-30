@@ -32,7 +32,7 @@
   <td id="projectlogo"><img alt="Logo" src="logo_sofia2.png"/></td>
   <td style="padding-left: 0.5em;">
    <div id="projectname">SSAP API, C Implementation
-   &#160;<span id="projectnumber">4.2</span>
+   &#160;<span id="projectnumber">4.3</span>
    </div>
    <div id="projectbrief">C implementation of the Sofia2 SSAP API</div>
   </td>
@@ -137,15 +137,15 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <div class="line">  <a name="_a5"></a><a class="code" href="structmqtt__connection.html">mqtt_connection</a>* connection = <a name="a6"></a><a class="code" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a>();</div>
 <div class="line">  <a name="a7"></a><a class="code" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110">MqttConnection_setRandomClientId</a>(connection);</div>
 <div class="line">  <a name="a8"></a><a class="code" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a">MqttConnection_setSsapCallback</a>(connection, messageReceivedHandler, (<span class="keywordtype">void</span>*) context);</div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525">ConnectionStatus</a> status = <a name="a9"></a><a class="code" href="KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d">KpMqtt_connectSSL</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;8883&quot;</span>, NULL, <span class="stringliteral">&quot;/etc/ssl/certs&quot;</span>);</div>
-<div class="line">  <span class="keywordflow">if</span> (status != <a name="a10"></a><a class="code" href="KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a7a691a2430ec26878897b5fbc9c22a4c">CONNECTED</a>){</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56">KpMqtt_ConnectStatus</a> status = <a name="a9"></a><a class="code" href="KpMQTT_8h.html#ab32035bcba5974ab65eb2250c95462c7">KpMqtt_connectSSL</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;8883&quot;</span>, NULL, <span class="stringliteral">&quot;/etc/ssl/certs&quot;</span>);</div>
+<div class="line">  <span class="keywordflow">if</span> (status != <a name="a10"></a><a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ab22f505a013899f6c32d29dc2bdc7a10">Connection_Established</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong...\n&quot;</span>);</div>
 <div class="line">  }  </div>
 <div class="line">  </div>
 <div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *joinMessage = <a name="a11"></a><a class="code" href="SsapMessageGenerator_8h.html#a8eb3483515f92b49c69378422cefa0db">generateJoinMessage</a>(<span class="stringliteral">&quot;2cbbe5655fcb4545be5039fc6fb511de&quot;</span>, <span class="stringliteral">&quot;KpName:KpName01&quot;</span>);</div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15">SendStatus</a> send_status = <a name="a12"></a><a class="code" href="KpMQTT_8h.html#af5535969acf249144246152a88fc55e2">KpMqtt_send</a>(connection, joinMessage, 1000);</div>
-<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a13"></a><a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b">SENT</a>){</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643">KpMqtt_SendStatus</a> send_status = <a name="a12"></a><a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, joinMessage, 1000);</div>
+<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a13"></a><a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac">Ssap_Message_Sent</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;The JOIN message was sent\n&quot;</span>);   </div>
 <div class="line">  }   </div>
 <div class="line">  <span class="keywordflow">while</span> (context-&gt;sessionKey == NULL)</div>
@@ -153,16 +153,16 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <div class="line">  </div>
 <div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *leaveMessage = <a name="a14"></a><a class="code" href="SsapMessageGenerator_8h.html#af8c80c301697824ec192cda37843ace2">generateLeaveMessage</a>(context-&gt;sessionKey);</div>
 <div class="line">  </div>
-<div class="line">  send_status = <a class="code" href="KpMQTT_8h.html#af5535969acf249144246152a88fc55e2">KpMqtt_send</a>(connection, leaveMessage, 1000);</div>
-<div class="line">  <span class="keywordflow">if</span> (send_status == <a class="code" href="KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b">SENT</a>){</div>
+<div class="line">  send_status = <a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, leaveMessage, 1000);</div>
+<div class="line">  <span class="keywordflow">if</span> (send_status == <a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac">Ssap_Message_Sent</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;The LEAVE message was sent\n&quot;</span>);   </div>
 <div class="line">  } </div>
 <div class="line">  </div>
 <div class="line">  <span class="keywordflow">while</span> (!context-&gt;disconnect)</div>
 <div class="line">        sleep(1);</div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91">DisconnectionStatus</a> status1 = <a name="a15"></a><a class="code" href="KpMQTT_8h.html#ad1f21f13ce9c17d41d47f3ed3a57a5eb">KpMqtt_disconnect</a>(connection, 100);</div>
-<div class="line">  <span class="keywordflow">if</span> (status1 != <a name="a16"></a><a class="code" href="KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91acdaad1112073e3e2ea032424c38c34e1">DISCONNECTED</a>){</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6d">KpMqtt_DisconnectStatus</a> status1 = <a name="a15"></a><a class="code" href="KpMQTT_8h.html#aabc4e2d34f3af3c26f1c428e3639ff0e">KpMqtt_disconnect</a>(connection, 100);</div>
+<div class="line">  <span class="keywordflow">if</span> (status1 != <a name="a16"></a><a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6daa9de82032e3b7273c996481d57fe40d2">Connection_Closed</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong while disconnecting from the SIB...\n&quot;</span>);    </div>
 <div class="line">  } </div>
 <div class="line">  </div>
@@ -177,7 +177,7 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <!-- start footer part -->
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
-    <li class="footer">Generated on Thu Oct 29 2015 12:53:18 for SSAP API, C Implementation by
+    <li class="footer">Generated on Fri Oct 30 2015 14:19:14 for SSAP API, C Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

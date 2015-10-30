@@ -12,8 +12,8 @@ var indexSectionsWithContent =
   2: "kmsu",
   3: "abcefgkmprs",
   4: "bcdiklmoprsuvw",
-  5: "cds",
-  6: "bcdefijlmnqrsu",
+  5: "cks",
+  6: "bcdeijlmnqrsu",
   7: "dkmnsw",
   8: "ds"
 };

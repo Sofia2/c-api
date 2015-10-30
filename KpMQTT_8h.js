@@ -10,34 +10,37 @@ var KpMQTT_8h =
     [ "SUSCRIBE_QOS_LEVEL", "KpMQTT_8h.html#a98fc270f759b8c7fd7eb04b93d64f47a", null ],
     [ "WATCHDOG_SEND_TIMEOUT", "KpMQTT_8h.html#a2fa4daba3d8a65cb1b1869144a59635a", null ],
     [ "WATCHDOG_TOPIC", "KpMQTT_8h.html#a661aff4ae1eb92e6352acb0173177fc5", null ],
-    [ "ConnectionStatus", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525", [
-      [ "CONNECTED", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a7a691a2430ec26878897b5fbc9c22a4c", null ],
-      [ "FAILED_CallbacksNotRegistered", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525ad686e08986d46bfaca37170fc0a2544d", null ],
-      [ "FAILED_PhysicalConnection", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a938799b0b8f0238d17df8ec16a405933", null ],
-      [ "FAILED_PhysicalConnection_BadCredentials", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a26e00e13227ad12020a966dd81969a79", null ],
-      [ "FAILED_PhysicalConnection_BadClientID", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525ab045ea0666f8f02a9d9cca87445f2d61", null ],
-      [ "FAILED_SubscriptionToSIBTopic", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525ad6d9d801a27bedf0cf2ddbb260935291", null ],
-      [ "FAILED_InternalError", "KpMQTT_8h.html#a94c42ef79c93cb9672927fc1e1be6525a1033df232780383892528b1461e091ea", null ]
+    [ "KpMqtt_ConnectStatus", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56", [
+      [ "Connection_Established", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ab22f505a013899f6c32d29dc2bdc7a10", null ],
+      [ "ConnectError_InvalidArguments", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56a1976cce84bc63379761ae0ed7cdaff28", null ],
+      [ "ConnectError_CallbacksNotRegistered", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ac5c4a2911a7753d5ffe32e0b8f2d61d7", null ],
+      [ "ConnectError_SocketError", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56afc1ace252238f22faece0433f7f33a4a", null ],
+      [ "ConnectError_BadCredentials", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56a6de02e659f2e49b6e678e6008a306bd5", null ],
+      [ "ConnectError_BadClientID", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56a74f6aa7aa4ec8c41b8214c8d61887b24", null ],
+      [ "ConnectError_SubscriptionToSIBTopic", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ac868cbfd1041a325b126c6f38438b8a0", null ],
+      [ "ConnectError_InternalError", "KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56a06309fcc836944c603d90073da45858a", null ]
     ] ],
-    [ "DisconnectionStatus", "KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91", [
-      [ "DISCONNECTED", "KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91acdaad1112073e3e2ea032424c38c34e1", null ],
-      [ "FAILED_ClosePhysicalConnection", "KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91a1f3eb805d8f8eb224538f9f7e847afa5", null ],
-      [ "FAILED_DisconnectionInternalError", "KpMQTT_8h.html#a433f6b787a3fe94980a96a34a1cb5a91a62ddedf7ef2f4e164931b628fa2deadb", null ]
+    [ "KpMqtt_DisconnectStatus", "KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6d", [
+      [ "Connection_Closed", "KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6daa9de82032e3b7273c996481d57fe40d2", null ],
+      [ "DisconnectWarning_MqttSubscriptionErrors", "KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6dae8f47e9d925b7f844f7088a3d438f428", null ],
+      [ "DisconnectError_SocketError", "KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6da59a20de6264c29416b5d18b02e9fb0eb", null ],
+      [ "DisconnectError_InternalError", "KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6da5b1d078b39591afe9d14e5f8783d3f0f", null ]
     ] ],
-    [ "SendStatus", "KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15", [
-      [ "SENT", "KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b", null ],
-      [ "FAILED_SendMessage", "KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15a2c9c8a390fd84cedcbf0e5a559d17cef", null ],
-      [ "FAILED_SIBReceptionConfirmation", "KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af5b193b0202a842f0c454c4935d7cb26", null ]
+    [ "KpMqtt_SendStatus", "KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643", [
+      [ "Ssap_Message_Sent", "KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac", null ],
+      [ "DeliveryError_ConnectionLost", "KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a4ea3ee8bea261b4911c7fae7805fd657", null ],
+      [ "DeliveryError_MalformedMqttMessage", "KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a70444c5ad87ed7e4e2b8c89b673025da", null ],
+      [ "DeliveryError_TimeoutError", "KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643af86ab37a57fe2888ac508397e84aab70", null ]
     ] ],
     [ "buildCredentials", "KpMQTT_8h.html#a4f56091765fda7c894fd678db659c845", null ],
     [ "KpMqtt_buildCredentials", "KpMQTT_8h.html#aad809ad24e12c2a6e4a0cac49131c995", null ],
-    [ "KpMqtt_connect", "KpMQTT_8h.html#a18499fce3a35bbedcf2eaec7a156cbb5", null ],
-    [ "KpMqtt_connectd", "KpMQTT_8h.html#abd2ed7d8b9dd349488c43dda0d29a598", null ],
-    [ "KpMqtt_connectSSL", "KpMQTT_8h.html#a79013f9a33ade5fd6c743293ca06169d", null ],
-    [ "KpMqtt_connectSSLd", "KpMQTT_8h.html#a8fc08652368728e37dea7a59dc8f4d8b", null ],
-    [ "KpMqtt_disconnect", "KpMQTT_8h.html#ad1f21f13ce9c17d41d47f3ed3a57a5eb", null ],
+    [ "KpMqtt_connect", "KpMQTT_8h.html#aa23b63035696b8f6215c403fe2c00661", null ],
+    [ "KpMqtt_connectd", "KpMQTT_8h.html#a3b03ca5589389d44b290bdd112b4e3e7", null ],
+    [ "KpMqtt_connectSSL", "KpMQTT_8h.html#ab32035bcba5974ab65eb2250c95462c7", null ],
+    [ "KpMqtt_connectSSLd", "KpMQTT_8h.html#a4e18765c07828ef457499c9f572d4f00", null ],
+    [ "KpMqtt_disconnect", "KpMQTT_8h.html#aabc4e2d34f3af3c26f1c428e3639ff0e", null ],
     [ "KpMqtt_freeOpenSSLTables", "KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b", null ],
-    [ "KpMqtt_send", "KpMQTT_8h.html#af5535969acf249144246152a88fc55e2", null ],
+    [ "KpMqtt_send", "KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a", null ],
     [ "KpMqtt_setIndicationListener", "KpMQTT_8h.html#a998718f3bde4ed2f6ba64c73c97e93ba", null ],
     [ "setIndicationListener", "KpMQTT_8h.html#a17ce378f6dc282c2cad711896a6ce791", null ]
 ];

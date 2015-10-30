@@ -1,4 +1,4 @@
 var searchData=
 [
-  ['native',['NATIVE',['../SsapMessageGenerator_8h.html#a9c0c158bf7ca3d73a1e9d2bd8f712cd1a26741459537a01adc304c787cdd3243e',1,'SsapMessageGenerator.h']]]
+  ['query',['QUERY',['../SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664a21043ddfa5289b4cf14cd4e3f5a89b62',1,'SsapMessageGenerator.h']]]
 ];

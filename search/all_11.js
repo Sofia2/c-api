@@ -2,8 +2,6 @@ var searchData=
 [
   ['ssap_20api_2c_20c_20implementation',['SSAP API, C Implementation',['../index.html',1,'']]],
   ['send_5fto_5fsib_5fqos_5flevel',['SEND_TO_SIB_QOS_LEVEL',['../KpMQTT_8h.html#ae351369120d97e85678e034c811fdd7f',1,'KpMQTT.h']]],
-  ['sendstatus',['SendStatus',['../KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15',1,'KpMQTT.h']]],
-  ['sent',['SENT',['../KpMQTT_8h.html#a2f96fdb6fe6979ec30d76ea5e290be15af29619d9240b20155ab50bc3beb3947b',1,'KpMQTT.h']]],
   ['sessionkey',['sessionKey',['../structssap__message.html#a34042fb91712891a6ff15040d6da241f',1,'ssap_message']]],
   ['setindicationlistener',['setIndicationListener',['../KpMQTT_8h.html#a17ce378f6dc282c2cad711896a6ce791',1,'KpMQTT.h']]],
   ['sib_5fdefined',['SIB_DEFINED',['../SsapMessageGenerator_8h.html#a9c0c158bf7ca3d73a1e9d2bd8f712cd1a34e00ebb0fc44b4e65b9e168f5f15ae9',1,'SsapMessageGenerator.h']]],
@@ -13,6 +11,7 @@ var searchData=
   ['sqllike',['SQLLIKE',['../SsapMessageGenerator_8h.html#a9c0c158bf7ca3d73a1e9d2bd8f712cd1a692b7f1f0690d10589cf27920f17d77a',1,'SsapMessageGenerator.h']]],
   ['ssap_5findications_5ftopic',['SSAP_INDICATIONS_TOPIC',['../KpMQTT_8h.html#a09d5dc870b4b1aba97ffa91496d80240',1,'KpMQTT.h']]],
   ['ssap_5fmessage',['ssap_message',['../structssap__message.html',1,'']]],
+  ['ssap_5fmessage_5fsent',['Ssap_Message_Sent',['../KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac',1,'KpMQTT.h']]],
   ['ssap_5fmessagetojson',['ssap_messageToJson',['../SsapMessageGenerator_8h.html#a21872bcb8eb316da35a44d3fb7afb8de',1,'SsapMessageGenerator.h']]],
   ['ssap_5fmqtt_5fconnection_5fapi',['SSAP_MQTT_CONNECTION_API',['../MqttConnection_8h.html#ab29daaaa6ea6699bd364b9a8d936afc6',1,'MqttConnection.h']]],
   ['ssap_5fresponses_5ftopic',['SSAP_RESPONSES_TOPIC',['../KpMQTT_8h.html#a74ec19f421cd68625daaacc05f43ba63',1,'KpMQTT.h']]],
