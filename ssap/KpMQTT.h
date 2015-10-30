@@ -95,7 +95,7 @@ KPMQTTDLL_API typedef enum {
     Ssap_Message_Sent, ///< The message was sent to the SIB successfully.
     DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
     DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
-    DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost. The message may have also have been delivered to the server.
+    DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not mean that the connection has been lost.
 } KpMqtt_SendStatus;
 
 /**
