@@ -133,7 +133,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
     char* address = (char*) malloc((strlen("tcp://")+strlen(server)+strlen(":")+strlen(port)+1)*sizeof(char));
     
     if (address == NULL)
-        return FAILED_InternalError;
+        return ConnectError_InternalError;
     if (ca_file != NULL || ca_path != NULL) {
         strcpy(address, "ssl://");
     } else {
@@ -144,7 +144,11 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
     strcat(address, port);
 
     int rc = MQTTClient_create(&(connection->mqttClient), (char*)address, connection->clientId, MQTTCLIENT_PERSISTENCE_NONE, NULL);
-
+    if (rc != MQTTCLIENT_SUCCESS){
+        free(address);
+        return ConnectError_InvalidArguments;
+    }
+    
     MQTTClient_connectOptions conn_opts = MQTTClient_connectOptions_initializer;   
 
     conn_opts.connectTimeout = connection->connectTimeout;
@@ -165,10 +169,11 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
       conn_opts.ssl->enableServerCertAuth = 1;
     }
 
-    rc=MQTTClient_setCallbacks(connection->mqttClient, (void*) connection, onMqttConnectionEvent, 
+    rc = MQTTClient_setCallbacks(connection->mqttClient, (void*) connection, onMqttConnectionEvent, 
                                onMqttMessageReceived, NULL);
-    if(rc==MQTTCLIENT_FAILURE) {
-        return FAILED_CallbacksNotRegistered;
+    if(rc == MQTTCLIENT_FAILURE) {
+        free(address);
+        return ConnectError_CallbacksNotRegistered;
     }
 
     if ((rc = MQTTClient_connect(connection->mqttClient, &conn_opts)) != MQTTCLIENT_SUCCESS) {
@@ -176,45 +181,45 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
         free(address);
         switch(rc){
           case 2:
-              return FAILED_PhysicalConnection_BadClientID;
+              return ConnectError_BadClientID;
           case 4:
           case 5:
-              return FAILED_PhysicalConnection_BadCredentials;
+              return ConnectError_BadCredentials;
           default:
-              return FAILED_PhysicalConnection;
+              return ConnectError_PhysicalConnectionError;
         }
     }
 
     // Create & subscribe to the topic of this KP.
-    char* topic=(char*) malloc((strlen(SSAP_RESPONSES_TOPIC)+strlen(connection->clientId)+1)*sizeof(char));
+    char* topic= (char*) malloc((strlen(SSAP_RESPONSES_TOPIC)+strlen(connection->clientId)+1)*sizeof(char));
         if (topic == NULL)
-                return FAILED_InternalError;
+                return ConnectError_InternalError;
     strcpy(topic,SSAP_RESPONSES_TOPIC);
     strcat(topic, connection->clientId);
 
-    rc=MQTTClient_subscribe(connection->mqttClient, topic, SUSCRIBE_QOS_LEVEL);
+    rc = MQTTClient_subscribe(connection->mqttClient, topic, SUSCRIBE_QOS_LEVEL);
     if(rc!=MQTTCLIENT_SUCCESS) {
         deallocateMqttConnection(connection);
         free(address);
         free(topic);
-        return FAILED_SubscriptionToSIBTopic;
+        return ConnectError_SubscriptionToSIBTopic;
     }
 
 
     // Create & subscribe to the indications topic of this KP.
     char* topicIndication=(char*) malloc((strlen(SSAP_INDICATIONS_TOPIC)+strlen(connection->clientId)+1)*sizeof(char));
     if (topicIndication == NULL)
-        return FAILED_InternalError;
+        return ConnectError_InternalError;
     strcpy(topicIndication, SSAP_INDICATIONS_TOPIC);
     strcat(topicIndication, connection->clientId);
 
-    rc=MQTTClient_subscribe(connection->mqttClient, topicIndication, SUSCRIBE_QOS_LEVEL);
-    if(rc!=MQTTCLIENT_SUCCESS) {
+    rc = MQTTClient_subscribe(connection->mqttClient, topicIndication, SUSCRIBE_QOS_LEVEL);
+    if(rc != MQTTCLIENT_SUCCESS) {
         deallocateMqttConnection(connection);
         free(address);
         free(topic);
         free(topicIndication);
-        return FAILED_SubscriptionToSIBTopic;
+        return ConnectError_SubscriptionToSIBTopic;
     }
 
     free(address);
@@ -225,7 +230,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
         //Thread_start(monitorConnection, (void*) connection);
     }
 
-    return CONNECTED;
+    return Connection_Established;
 }
 
 KpMqtt_ConnectStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
@@ -253,7 +258,7 @@ KpMqtt_ConnectStatus KpMqtt_connectSSLd(const char* server, const char* port, mq
 KpMqtt_ConnectStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
                                                 const char* ca_file, const char* ca_path){
     KpMqtt_ConnectStatus retval = establishConnection(*connection, server, port, ca_file, ca_path);
-    if (retval != CONNECTED)
+    if (retval != Connection_Established)
         *connection = NULL;
     return retval;
 }

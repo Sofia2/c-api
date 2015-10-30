@@ -80,7 +80,7 @@ int main(){
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   KpMqtt_ConnectStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
-  if (status != CONNECTED){
+  if (status != Connection_Established){
     printf("Oops! Something went wrong...\n");    
   }
   

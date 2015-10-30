@@ -65,13 +65,15 @@ extern "C" {
 /**
  * An enum type that describes the outcome of a connection process.
  */
-KPMQTTDLL_API typedef enum { CONNECTED, ///< The MQTT connection was established
-  FAILED_CallbacksNotRegistered, ///< The SSAP message callback could not be registered.
-  FAILED_PhysicalConnection, ///< The TCP connection with the SIB could not be established.
-  FAILED_PhysicalConnection_BadCredentials, ///< The MQTT credentials were not correct.
-  FAILED_PhysicalConnection_BadClientID, ///< The MQTT ClientID was not valid.
-  FAILED_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created .
-  FAILED_InternalError ///< An internal API error has occured.
+KPMQTTDLL_API typedef enum { 
+    Connection_Established, ///< The MQTT connection was established.
+    ConnectError_InvalidArguments, ///< The MQTT client structure could not be initialized due to a bad function call.
+    ConnectError_CallbacksNotRegistered, ///< The SSAP message callback could not be registered.
+    ConnectError_PhysicalConnectionError, ///< The TCP connection with the SIB could not be established.
+    ConnectError_BadCredentials, ///< The MQTT credentials were not correct.
+    ConnectError_BadClientID, ///< The MQTT ClientID was not valid.
+    ConnectError_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created .
+    ConnectError_InternalError ///< An internal API error has occured.
 } KpMqtt_ConnectStatus;
 
 /**

@@ -65,7 +65,7 @@ int main(){
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   KpMqtt_ConnectStatus status = KpMqtt_connectSSL(&connection, "sofia2.com", "8883", NULL, "/etc/ssl/certs");
-  if (status != CONNECTED){
+  if (status != Connection_Established){
     printf("Oops! Something went wrong...\n");
   }  
   

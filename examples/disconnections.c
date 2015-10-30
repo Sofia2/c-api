@@ -67,7 +67,7 @@ int main(){
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   MqttConnection_setConnectionEventsCallback(connection, connectionEventsHandler, (void*) context);
   KpMqtt_ConnectStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
-  if (status != CONNECTED){
+  if (status != Connection_Established){
     printf("Unable to connect to the SIB\n");
     goto exit;
   }  

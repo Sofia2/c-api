@@ -65,7 +65,7 @@ int main(){
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   KpMqtt_ConnectStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
-  if (status != CONNECTED){
+  if (status != Connection_Established){
     printf("Unable to establish connection. Exiting...\n");
     goto exit;
   }  
