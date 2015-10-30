@@ -64,7 +64,7 @@ int main(){
   mqtt_connection* connection = MqttConnection_allocate();
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
-  ConnectionStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
+  KpMqtt_ConnectStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
   if (status != CONNECTED){
     printf("Unable to establish connection. Exiting...\n");
     goto exit;
@@ -89,7 +89,7 @@ int main(){
   while (!context->disconnect)
         sleep(1);
   
-  DisconnectionStatus status1 = KpMqtt_disconnect(connection, 100);
+  KpMqtt_DisconnectStatus status1 = KpMqtt_disconnect(connection, 100);
   if (status1 != DISCONNECTED){
     printf("Unable to disconnect from the SIB\n");    
   } 

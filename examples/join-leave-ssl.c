@@ -64,7 +64,7 @@ int main(){
   mqtt_connection* connection = MqttConnection_allocate();
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
-  ConnectionStatus status = KpMqtt_connectSSL(&connection, "sofia2.com", "8883", NULL, "/etc/ssl/certs");
+  KpMqtt_ConnectStatus status = KpMqtt_connectSSL(&connection, "sofia2.com", "8883", NULL, "/etc/ssl/certs");
   if (status != CONNECTED){
     printf("Oops! Something went wrong...\n");
   }  
@@ -88,7 +88,7 @@ int main(){
   while (!context->disconnect)
         sleep(1);
   
-  DisconnectionStatus status1 = KpMqtt_disconnect(connection, 100);
+  KpMqtt_DisconnectStatus status1 = KpMqtt_disconnect(connection, 100);
   if (status1 != DISCONNECTED){
     printf("Oops! Something went wrong while disconnecting from the SIB...\n");    
   } 

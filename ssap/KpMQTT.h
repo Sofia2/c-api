@@ -72,7 +72,7 @@ KPMQTTDLL_API typedef enum { CONNECTED, ///< The MQTT connection was established
   FAILED_PhysicalConnection_BadClientID, ///< The MQTT ClientID was not valid.
   FAILED_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created .
   FAILED_InternalError ///< An internal API error has occured.
-} ConnectionStatus;
+} KpMqtt_ConnectStatus;
 
 /**
  * An enum type that describes the outcome of a disconnection process.
@@ -82,7 +82,7 @@ KPMQTTDLL_API typedef enum { CONNECTED, ///< The MQTT connection was established
 KPMQTTDLL_API typedef enum {DISCONNECTED, ///< The connection was closed properly 
   FAILED_ClosePhysicalConnection, ///< The socket could not be closed
   FAILED_DisconnectionInternalError ///< An internal API error has occured
-} DisconnectionStatus;
+} KpMqtt_DisconnectStatus;
 
 /**
  * An enum type that describes the outcome of a message delivery operation.
@@ -97,7 +97,7 @@ KPMQTTDLL_API typedef enum {MessageSent, ///< The message was sent to the SIB su
  * This structure stores the result of a MQTT connection operation
  */
 KPMQTTDLL_API typedef struct {
-  ConnectionStatus op;
+  KpMqtt_ConnectStatus op;
   mqtt_connection connection_obj; 
 } mqtt_connection_result;
 
@@ -115,11 +115,11 @@ KPMQTTDLL_API typedef struct {
  * @param connectionEventsContext A pointer to the context (a.k.a. "state") structure used by the connectionEventsCallback function.
  * @param created_connection A pointer to an structure that stores the MQTT connection state, passed by reference. When no connection
  * 	has been established, it will be setted to NULL.
- * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connect() instead.
  * @warning This function is not thread-safe.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
+KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
                                 genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                 void* connectionEventsCallback, void* connectionEventsContext,
                                 mqtt_connection** created_connection);
@@ -130,10 +130,10 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(const char* server, const char* p
  * @param connection A configured MQTT connection structure.
  * @param server The SIB server name
  * @param port The SIB MQTT port
- * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
  * @warning This function is not thread-safe.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port);
+KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port);
 
 /**
  * Establishes a MQTT over SSL connection with the SIB.
@@ -152,11 +152,11 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, cons
  * @param connectionEventsContext A pointer to the context (a.k.a. "state") structure used by the connectionEventsCallback function.
  * @param created_connection A pointer to an structure that stores the MQTT connection state, passed by reference. When no connection
  * 	has been established, it will be setted to NULL.
- * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connectSSL() instead.
  * @warning This function is not thread-safe.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials,
+KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials,
                                                   const char* ca_file, const char* ca_path,
                                    genericSsapCallback* messageReceivedCallback, void* callbackContext,
                                    void* connectionEventsCallback, void* connectionEventsContext,
@@ -171,10 +171,10 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(const char* server, const char
  * @param ca_file The trusted PEM certificate. <strong>It must be a root certificate.</strong>
  * @param ca_path The directory that contains the trusted PEM certificates (usually, /etc/ssl/certs).
  * @warning You must pass either the ca_file or the ca_path parameter to this function.
- * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
  * @warning This function is not thread-safe.
  */
-KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
+KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
                                                 const char* ca_file, const char* ca_path);
 
 /**
@@ -182,10 +182,10 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, c
  * @param connection A pointer to the status structure of the connection.
  * @param timeout A timeout to close the connection in milliseconds. If the
  * 	timeout elapses, the connection will be closed abruply.
- * @return A DisconnectionStatus enum value representing the result of the disconnection process.
+ * @return A KpMqtt_DisconnectStatus enum value representing the result of the disconnection process.
  * @warning This function is not thread-safe.
  */
-KPMQTTDLL_API DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout);
+KPMQTTDLL_API KpMqtt_DisconnectStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout);
 
 /**
  * Sends a SSAP message to the SIB

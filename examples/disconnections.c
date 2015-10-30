@@ -66,7 +66,7 @@ int main(){
   MqttConnection_setRetryInterval(connection, 2);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   MqttConnection_setConnectionEventsCallback(connection, connectionEventsHandler, (void*) context);
-  ConnectionStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
+  KpMqtt_ConnectStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");
   if (status != CONNECTED){
     printf("Unable to connect to the SIB\n");
     goto exit;
@@ -88,7 +88,7 @@ int main(){
      sleep(5);
   }
   
-  DisconnectionStatus status1 = KpMqtt_disconnect(connection, 0);
+  KpMqtt_DisconnectStatus status1 = KpMqtt_disconnect(connection, 0);
   if (status1 != DISCONNECTED){
     printf("Oops! Something went wrong while disconnecting from the SIB...\n");    
   } 
