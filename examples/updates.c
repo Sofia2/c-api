@@ -87,7 +87,7 @@ int main(){
   ssap_message *joinMessage = generateJoinMessage(TOKEN, KP);
   
   KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The JOIN message has been sent\n");   
   }
   
@@ -97,7 +97,7 @@ int main(){
   ssap_message *updateMessage = generateUpdateMessage(context->sessionKey, ONTOLOGY, NATIVE_UPDATE);
   send_status = KpMqtt_send(connection, updateMessage, 1000);
   
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
 	  printf("The NATIVE UPDATE message has been sent\n");
   }
 
@@ -108,7 +108,7 @@ int main(){
   updateMessage = generateUpdateMessageWithQueryType(context->sessionKey, ONTOLOGY, SQLLIKE_UPDATE, SQLLIKE);
   KpMqtt_send(connection, updateMessage, 1000);
   
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
 	  printf("The SQL-LIKE UPDATE message has been sent\n");
   }
 
@@ -118,7 +118,7 @@ int main(){
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The LEAVE message has been sent\n");   
   }
 

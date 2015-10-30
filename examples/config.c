@@ -62,7 +62,7 @@ int main(){
   ssap_message *configMessage = generateConfigMessage("KPvisualizacionHT", "KPvisualizacionHT01", "cbb9364c434543a18dc6efa30dc780eb", NULL, NULL);
   
   KpMqtt_SendStatus send_status = KpMqtt_send(connection, configMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The CONFIG message was sent\n");   
   }
   

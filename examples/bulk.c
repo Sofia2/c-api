@@ -88,7 +88,7 @@ int main(){
   printf("The JOIN message has been generated\n");
   
   KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The JOIN message has been sent\n");   
   }
   
@@ -120,7 +120,7 @@ int main(){
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The LEAVE message has been sent\n");   
   }
 

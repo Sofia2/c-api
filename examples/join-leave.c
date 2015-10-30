@@ -73,7 +73,7 @@ int main(){
   ssap_message *joinMessage = generateJoinMessage("859ff38deae8442d90d3a525a0d837dd", "KP_Drone_Joystick:KP_Drone_Joystick01");
   
   KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The JOIN message was sent\n");   
   }   
   while (context->sessionKey == NULL)
@@ -82,7 +82,7 @@ int main(){
   ssap_message *leaveMessage = generateLeaveMessage(context->sessionKey);
   
   send_status = KpMqtt_send(connection, leaveMessage, 1000);
-  if (send_status == MessageSent){
+  if (send_status == Ssap_Message_Sent){
     printf("The LEAVE message was sent\n");   
   } 
   

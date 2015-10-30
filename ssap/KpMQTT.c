@@ -66,7 +66,7 @@ KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* 
     MQTTClient_freeMessage(&aux);
 
     free((char*)payload);
-    return MessageSent;
+    return Ssap_Message_Sent;
 }
 
 void onMqttConnectionEvent(void* context, char* cause){
@@ -176,7 +176,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
         return ConnectError_CallbacksNotRegistered;
     }
 
-    if ((rc = MQTTClient_connect(connection->mqttClient, &conn_opts)) != MQTTCLIENT_SUCCESS) {
+    if ((rc = (connection->mqttClient, &conn_opts)) != MQTTCLIENT_SUCCESS) {
         deallocateMqttConnection(connection);
         free(address);
         switch(rc){
@@ -186,7 +186,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
           case 5:
               return ConnectError_BadCredentials;
           default:
-              return ConnectError_PhysicalConnectionError;
+              return ConnectError_SocketError;
         }
     }
 
@@ -198,7 +198,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
     strcat(topic, connection->clientId);
 
     rc = MQTTClient_subscribe(connection->mqttClient, topic, SUSCRIBE_QOS_LEVEL);
-    if(rc!=MQTTCLIENT_SUCCESS) {
+    if(rc != MQTTCLIENT_SUCCESS) {
         deallocateMqttConnection(connection);
         free(address);
         free(topic);

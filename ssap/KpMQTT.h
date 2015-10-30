@@ -69,7 +69,7 @@ KPMQTTDLL_API typedef enum {
     Connection_Established, ///< The MQTT connection was established.
     ConnectError_InvalidArguments, ///< The MQTT client structure could not be initialized due to a bad function call.
     ConnectError_CallbacksNotRegistered, ///< The SSAP message callback could not be registered.
-    ConnectError_PhysicalConnectionError, ///< The TCP connection with the SIB could not be established.
+    ConnectError_SocketError, ///< The TCP connection with the SIB could not be established.
     ConnectError_BadCredentials, ///< The MQTT credentials were not correct.
     ConnectError_BadClientID, ///< The MQTT ClientID was not valid.
     ConnectError_SubscriptionToSIBTopic, ///< The subscriptions to the topics used by the SIB could not be created .
@@ -89,10 +89,11 @@ KPMQTTDLL_API typedef enum {DISCONNECTED, ///< The connection was closed properl
 /**
  * An enum type that describes the outcome of a message delivery operation.
  */
-KPMQTTDLL_API typedef enum {MessageSent, ///< The message was sent to the SIB successfully.
-  DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
-  DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
-  DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost. The message may have also have been delivered to the server.
+KPMQTTDLL_API typedef enum {
+    Ssap_Message_Sent, ///< The message was sent to the SIB successfully.
+    DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
+    DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
+    DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not indicate that the connection has been lost. The message may have also have been delivered to the server.
 } KpMqtt_SendStatus;
 
 /**
