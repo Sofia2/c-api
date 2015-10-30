@@ -164,6 +164,9 @@ SSAP_MQTT_CONNECTION_API typedef struct {
 } mqtt_connection;
 
 /**
+ * @deprecated Use MqttConnection_allocate(), MqttConnection_setClientId(), MqttConnection_setRandomClientId(), MqttConnection_setCredentials(), 
+ * MqttConnection_setSsapCallback() and MqttConnection_setConnectionEventsCallback() methods instead.
+ * 
  * Initializes a MQTT connection.
  * @param clientId The MQTT clientId to be used.
  * @note The memory of the clientId will NOT be freed after the connection is closed.
@@ -174,8 +177,6 @@ SSAP_MQTT_CONNECTION_API typedef struct {
  * disconnection events are detected.
  * @param connectionEventsContext A pointer to the context (a.k.a. "state") structure used by the connectionEventsCallback function.
  * @note The memory of the connection and of all the given parameters will be freed when the connection is destroyed.
- * @deprecated Use MqttConnection_allocate(), MqttConnection_setClientId(), MqttConnection_setRandomClientId(), MqttConnection_setCredentials(), 
- * MqttConnection_setSsapCallback() and MqttConnection_setConnectionEventsCallback() methods instead.
  */
 SSAP_MQTT_CONNECTION_API mqtt_connection* MqttConnection_allocated(const char* clientId, mqtt_credentials* credentials,
                 genericSsapCallback* messageReceivedCallback, void* messageReceivedContext, 

@@ -95,7 +95,7 @@ KPMQTTDLL_API typedef enum {
     Ssap_Message_Sent, ///< The message was sent to the SIB successfully.
     DeliveryError_ConnectionLost, ///< The message could not be delivered due to a disconnection.
     DeliveryError_MalformedMqttMessage, ///< The message was malformed due to an API error or a bad API function call.
-    DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @warning This error does not mean that the connection has been lost.
+    DeliveryError_TimeoutError ///< The message could not be delivered within the specified timeout. @note This error does not mean that the connection has been lost.
 } KpMqtt_SendStatus;
 
 /**
@@ -107,8 +107,9 @@ KPMQTTDLL_API typedef struct {
 } mqtt_connection_result;
 
 /**
+ * @deprecated Use KpMqtt_connect() instead.
+ * 
  * Establishes a non-cyphered MQTT connection with the SIB.
- * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  * @param server The SIB server name
  * @param port The SIB MQTT port
  * @param credentials The MQTT credentials to use. This pointer must be setted to NULL when no authentication credentials will
@@ -121,8 +122,8 @@ KPMQTTDLL_API typedef struct {
  * @param created_connection A pointer to an structure that stores the MQTT connection state, passed by reference. When no connection
  * 	has been established, it will be setted to NULL.
  * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
- * @deprecated Use KpMqtt_connect() instead.
  * @warning This function is not thread-safe.
+ * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  */
 KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
                                 genericSsapCallback* messageReceivedCallback, void* callbackContext,
@@ -131,25 +132,25 @@ KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectd(const char* server, const cha
 
 /**
  * Establishes a non-cyphered MQTT connection with the SIB.
- * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  * @param connection A configured MQTT connection structure.
  * @param server The SIB server name
  * @param port The SIB MQTT port
  * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
  * @warning This function is not thread-safe.
+ * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  */
 KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port);
 
 /**
+ * @deprecated Use KpMqtt_connectSSL() instead.
+ * 
  * Establishes a MQTT over SSL connection with the SIB.
- * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  * @param server The SIB server name
  * @param port The SIB MQTT port
  * @param credentials The MQTT credentials to use. This pointer must be setted to NULL when no authentication credentials will
  * be used, and its memory will be freed from the API.
  * @param ca_file The trusted PEM certificate. <strong>It must be a root certificate.</strong>
  * @param ca_path The directory that contains the trusted PEM certificates (usually, /etc/ssl/certs).
- * @warning You must pass either the ca_file or the ca_path parameter to this function.
  * @param messageReceivedCallback A pointer to the function that will process all the incoming SSAP messages (except the INDICATION ones)
  * @param callbackContext A pointer to the context (a.k.a. "state") structure used by the messageReceivedCallback function.
  * @param connectionEventsCallback A pointer to the function that will process the MQTT connection events. So far, only
@@ -158,8 +159,10 @@ KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connect(mqtt_connection** connection, 
  * @param created_connection A pointer to an structure that stores the MQTT connection state, passed by reference. When no connection
  * 	has been established, it will be setted to NULL.
  * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
- * @deprecated Use KpMqtt_connectSSL() instead.
- * @warning This function is not thread-safe.
+ * @warning 
+ * - You must pass either the ca_file or the ca_path parameter to this function.
+ * - This function is not thread-safe.
+ * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  */
 KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials,
                                                   const char* ca_file, const char* ca_path,
@@ -169,15 +172,16 @@ KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectSSLd(const char* server, const 
 
 /**
  * Establishes a MQTT over SSL connection with the SIB.
- * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  * @param connection A configured MQTT connection structure.
  * @param server The SIB server name
  * @param port The SIB MQTT port
  * @param ca_file The trusted PEM certificate. <strong>It must be a root certificate.</strong>
  * @param ca_path The directory that contains the trusted PEM certificates (usually, /etc/ssl/certs).
- * @warning You must pass either the ca_file or the ca_path parameter to this function.
  * @return A KpMqtt_ConnectStatus enum value representing the result of the connection process.
- * @warning This function is not thread-safe.
+ * @warning 
+ * - You must pass either the ca_file or the ca_path parameter to this function.
+ * - This function is not thread-safe.
+ * @note If the connection is not established, all allocated the memory and the memory of the arguments will be freed.
  */
 KPMQTTDLL_API KpMqtt_ConnectStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
                                                 const char* ca_file, const char* ca_path);
@@ -211,11 +215,12 @@ KPMQTTDLL_API KpMqtt_SendStatus KpMqtt_send(mqtt_connection* connection, ssap_me
 KPMQTTDLL_API void KpMqtt_setIndicationListener(mqtt_connection* connection, ssapIndicationCallback* callback, void* callbackContext);
 
 /**
+ * @deprecated Use KpMqtt_setIndicationListener() instead.
+ * 
  * Registers the indication listener on a MQTT connection.
  * @param connection A pointer to the status structure of the connection.
  * @param callback A pointer to the SSAP indication callback function.
  * @param callbackContext  A pointer to the context (a.k.a. "state") structure used by the ssapIndicationCallback function.
- * @deprecated Use KpMqtt_setIndicationListener() instead.
  */
 KPMQTTDLL_API void setIndicationListener(mqtt_connection* connection, ssapIndicationCallback* callback, void* callbackContext);
 
@@ -228,17 +233,18 @@ KPMQTTDLL_API void setIndicationListener(mqtt_connection* connection, ssapIndica
 KPMQTTDLL_API mqtt_credentials* KpMqtt_buildCredentials(const char* username, const char*password);
 
 /**
+ * @deprecated Use KpMqtt_buildCredentials() instead.
+ * 
  * Builds an username and password-based MQTT credentials structure.
  * @param username The MQTT username to use.
  * @param password The MQTT password to use.
  * @return A MQTT credentials structure initialized with the given arguments. The arguments will be copied.
- * @deprecated Use KpMqtt_buildCredentials() instead.
  */
 KPMQTTDLL_API mqtt_credentials* buildCredentials(const char* username, const char*password);
 
 /**
  * Frees the memory used by the OpenSSL library.
- * @note This function is not thread safe. Call it before exiting from the main thread.
+ * @warning This function is not thread safe. Call it before exiting from the main thread.
  */
 KPMQTTDLL_API void KpMqtt_freeOpenSSLTables();
 

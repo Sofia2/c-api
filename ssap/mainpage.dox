@@ -124,4 +124,5 @@
  * \example updates.c
  * \example config.c
  * \example disconnections.c
+ * \example disconnections-data.c
  */
