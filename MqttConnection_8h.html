@@ -170,7 +170,6 @@ typedef void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" hr
 <tr class="separator:a2ab9a04f5044a5d2ee2df041c359e03b"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a9fbcd888394748d34afa166d5fdcd50a"><td class="memItemLeft" align="right" valign="top"><a class="el" href="MqttConnection_8h.html#ab29daaaa6ea6699bd364b9a8d936afc6">SSAP_MQTT_CONNECTION_API</a> <br class="typebreak" />
 <a class="el" href="structmqtt__connection.html">mqtt_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MqttConnection_8h.html#a9fbcd888394748d34afa166d5fdcd50a">MqttConnection_allocated</a> (const char *clientId, <a class="el" href="structmqtt__credentials.html">mqtt_credentials</a> *credentials, <a class="el" href="MqttConnection_8h.html#afcd4418156eb17b79888e3079cb86f11">genericSsapCallback</a> *messageReceivedCallback, void *messageReceivedContext, <a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a> *<a class="el" href="MqttConnection_8h.html#a2ab9a04f5044a5d2ee2df041c359e03b">connectionEventsCallback</a>, void *connectionEventsContext)</td></tr>
-<tr class="memdesc:a9fbcd888394748d34afa166d5fdcd50a"><td class="mdescLeft">&#160;</td><td class="mdescRight">Initializes a MQTT connection.  <a href="#a9fbcd888394748d34afa166d5fdcd50a">More...</a><br /></td></tr>
 <tr class="separator:a9fbcd888394748d34afa166d5fdcd50a"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a7a3624e2efb580eafa084125c0ec59a7"><td class="memItemLeft" align="right" valign="top"><a class="el" href="MqttConnection_8h.html#ab29daaaa6ea6699bd364b9a8d936afc6">SSAP_MQTT_CONNECTION_API</a> <br class="typebreak" />
 <a class="el" href="structmqtt__connection.html">mqtt_connection</a> *&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a> ()</td></tr>
@@ -393,7 +392,7 @@ Circutor S.A. </dd></dl>
 
 <p>Allocates the memory of a MQTT connection. </p>
 <dl class="section note"><dt>Note</dt><dd>The connection </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a8">bulk.c</a>, <a class="el" href="config_8c-example.html#a5">config.c</a>, <a class="el" href="deletes_8c-example.html#a7">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a5">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a8">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a6">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a6">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a8">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a10">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a8">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a8">bulk.c</a>, <a class="el" href="config_8c-example.html#a5">config.c</a>, <a class="el" href="deletes_8c-example.html#a7">deletes.c</a>, <a class="el" href="disconnections-data_8c-example.html#a7">disconnections-data.c</a>, <a class="el" href="disconnections_8c-example.html#a5">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a8">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a6">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a6">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a8">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a10">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a8">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -444,9 +443,8 @@ Circutor S.A. </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-
-<p>Initializes a MQTT connection. </p>
-<dl class="params"><dt>Parameters</dt><dd>
+<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Use <a class="el" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7" title="Allocates the memory of a MQTT connection. ">MqttConnection_allocate()</a>, <a class="el" href="MqttConnection_8h.html#a919fe7bab81973646b4f0e7798d260b1" title="Sets the MQTT clientId to be used. ">MqttConnection_setClientId()</a>, <a class="el" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110" title="Configures the MQTT connection to use a random clientID. ">MqttConnection_setRandomClientId()</a>, <a class="el" href="MqttConnection_8h.html#aa530fd2494c0a1a67ae9b2ae244c27d1" title="Sets the MQTT credentials to be used. ">MqttConnection_setCredentials()</a>, <a class="el" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a" title="Sets the callback function that will handle the incoming SSAP messages. ">MqttConnection_setSsapCallback()</a> and <a class="el" href="MqttConnection_8h.html#ae40f53446bdcf83498439ecef958cb64" title="Sets the callback function that will handle the MQTT connection events. ">MqttConnection_setConnectionEventsCallback()</a> methods instead.</dd></dl>
+<p>Initializes a MQTT connection. </p><dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">clientId</td><td>The MQTT clientId to be used. </td></tr>
   </table>
@@ -464,7 +462,6 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The memory of the connection and of all the given parameters will be freed when the connection is destroyed. </dd></dl>
-<dl class="deprecated"><dt><b><a class="el" href="deprecated.html#_deprecated000005">Deprecated:</a></b></dt><dd>Use <a class="el" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7" title="Allocates the memory of a MQTT connection. ">MqttConnection_allocate()</a>, <a class="el" href="MqttConnection_8h.html#a919fe7bab81973646b4f0e7798d260b1" title="Sets the MQTT clientId to be used. ">MqttConnection_setClientId()</a>, <a class="el" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110" title="Configures the MQTT connection to use a random clientID. ">MqttConnection_setRandomClientId()</a>, <a class="el" href="MqttConnection_8h.html#aa530fd2494c0a1a67ae9b2ae244c27d1" title="Sets the MQTT credentials to be used. ">MqttConnection_setCredentials()</a>, <a class="el" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a" title="Sets the callback function that will handle the incoming SSAP messages. ">MqttConnection_setSsapCallback()</a> and <a class="el" href="MqttConnection_8h.html#ae40f53446bdcf83498439ecef958cb64" title="Sets the callback function that will handle the MQTT connection events. ">MqttConnection_setConnectionEventsCallback()</a> methods instead. </dd></dl>
 
 </div>
 </div>
@@ -605,7 +602,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>Due to the limitations of the underlying MQTT client (Eclipse Paho), only disconnection events will be reported. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections_8c-example.html#a11">disconnections.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections-data_8c-example.html#a13">disconnections-data.c</a>, and <a class="el" href="disconnections_8c-example.html#a11">disconnections.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -641,7 +638,7 @@ Circutor S.A. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections_8c-example.html#a7">disconnections.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections-data_8c-example.html#a9">disconnections-data.c</a>, and <a class="el" href="disconnections_8c-example.html#a7">disconnections.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -714,7 +711,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>Setting a keepAlive interval too low can dramatically increase the number of disconnections. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections_8c-example.html#a8">disconnections.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections-data_8c-example.html#a10">disconnections-data.c</a>, and <a class="el" href="disconnections_8c-example.html#a8">disconnections.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -740,7 +737,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section note"><dt>Note</dt><dd>The memory of the clientId will be freed after the connection is closed. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a9">bulk.c</a>, <a class="el" href="config_8c-example.html#a6">config.c</a>, <a class="el" href="deletes_8c-example.html#a8">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a6">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a9">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a7">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a7">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a9">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a11">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a9">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a9">bulk.c</a>, <a class="el" href="config_8c-example.html#a6">config.c</a>, <a class="el" href="deletes_8c-example.html#a8">deletes.c</a>, <a class="el" href="disconnections-data_8c-example.html#a8">disconnections-data.c</a>, <a class="el" href="disconnections_8c-example.html#a6">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a9">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a7">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a7">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a9">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a11">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a9">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -776,7 +773,7 @@ Circutor S.A. </dd></dl>
   </table>
   </dd>
 </dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections_8c-example.html#a9">disconnections.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="disconnections-data_8c-example.html#a11">disconnections-data.c</a>, and <a class="el" href="disconnections_8c-example.html#a9">disconnections.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -820,7 +817,7 @@ Circutor S.A. </dd></dl>
   </dd>
 </dl>
 <dl class="section warning"><dt>Warning</dt><dd>These callbacks must be configured before establishing the connection. </dd></dl>
-<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a10">bulk.c</a>, <a class="el" href="config_8c-example.html#a7">config.c</a>, <a class="el" href="deletes_8c-example.html#a9">deletes.c</a>, <a class="el" href="disconnections_8c-example.html#a10">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a10">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a8">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a8">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a10">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a12">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a10">updates.c</a>.</dd>
+<dl><dt><b>Examples: </b></dt><dd><a class="el" href="bulk_8c-example.html#a10">bulk.c</a>, <a class="el" href="config_8c-example.html#a7">config.c</a>, <a class="el" href="deletes_8c-example.html#a9">deletes.c</a>, <a class="el" href="disconnections-data_8c-example.html#a12">disconnections-data.c</a>, <a class="el" href="disconnections_8c-example.html#a10">disconnections.c</a>, <a class="el" href="inserts_8c-example.html#a10">inserts.c</a>, <a class="el" href="join-leave-ssl_8c-example.html#a8">join-leave-ssl.c</a>, <a class="el" href="join-leave_8c-example.html#a8">join-leave.c</a>, <a class="el" href="queries_8c-example.html#a10">queries.c</a>, <a class="el" href="subscribes_8c-example.html#a12">subscribes.c</a>, and <a class="el" href="updates_8c-example.html#a10">updates.c</a>.</dd>
 </dl>
 </div>
 </div>
@@ -858,7 +855,7 @@ Circutor S.A. </dd></dl>
 <div id="nav-path" class="navpath"><!-- id is needed for treeview function! -->
   <ul>
     <li class="navelem"><a class="el" href="dir_ebaa9c422e2faa7d2f93e66b1a6315cd.html">ssap</a></li><li class="navelem"><a class="el" href="MqttConnection_8h.html">MqttConnection.h</a></li>
-    <li class="footer">Generated on Fri Oct 30 2015 14:19:14 for SSAP API, C Implementation by
+    <li class="footer">Generated on Fri Oct 30 2015 14:33:12 for SSAP API, C Implementation by
     <a href="http://www.doxygen.org/index.html">
     <img class="footer" src="doxygen.png" alt="doxygen"/></a> 1.8.7 </li>
   </ul>

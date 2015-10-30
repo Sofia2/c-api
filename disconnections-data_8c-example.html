@@ -4,7 +4,7 @@
 <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=9"/>
 <meta name="generator" content="Doxygen 1.8.7"/>
-<title>SSAP API, C Implementation: join-leave-ssl.c</title>
+<title>SSAP API, C Implementation: disconnections-data.c</title>
 <link href="tabs.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="jquery.js"></script>
 <script type="text/javascript" src="dynsections.js"></script>
@@ -72,7 +72,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Search');
   </div>
 </div>
 <script type="text/javascript">
-$(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');});
+$(document).ready(function(){initNavTree('disconnections-data_8c-example.html','');});
 </script>
 <div id="doc-content">
 <!-- window showing the filter options -->
@@ -91,7 +91,7 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 
 <div class="header">
   <div class="headertitle">
-<div class="title">join-leave-ssl.c</div>  </div>
+<div class="title">disconnections-data.c</div>  </div>
 </div><!--header-->
 <div class="contents">
 <div class="fragment"><div class="line"></div>
@@ -101,9 +101,11 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <div class="line"><span class="preprocessor">#include &quot;../ssap/KpMQTT.h&quot;</span></div>
 <div class="line"><span class="preprocessor">#include &quot;../ssap/sleeps.h&quot;</span></div>
 <div class="line"></div>
+<div class="line"><span class="preprocessor">#define ONTOLOGY &quot;SensorHumedad&quot;</span></div>
+<div class="line"><span class="preprocessor">#define NATIVE_INSERT_DATA &quot;\&quot;SensorHumedad\&quot;:{ \&quot;identificador\&quot;:\&quot;ST-TA3231\&quot;,\&quot;timestamp\&quot;:{\&quot;$date\&quot;: \&quot;2014-01-30T17:14:00Z\&quot;},\&quot;medida\&quot;:28.6,\&quot;unidad\&quot;:\&quot;string\&quot;,\&quot;geometry\&quot;:{\&quot;type\&quot;:\&quot;Point\&quot;, \&quot;coordinates\&quot;:[9,19.3]}}}&quot;</span></div>
+<div class="line"></div>
 <div class="line"><span class="keyword">typedef</span> <span class="keyword">struct </span>{</div>
 <div class="line">  <span class="keywordtype">char</span>* sessionKey;</div>
-<div class="line">  <span class="keyword">volatile</span> <span class="keywordtype">int</span> leave;</div>
 <div class="line">  <span class="keyword">volatile</span> <span class="keywordtype">int</span> disconnect;</div>
 <div class="line">} context_t;</div>
 <div class="line"></div>
@@ -115,11 +117,10 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <div class="line">      printf(<span class="stringliteral">&quot;Session key: %s\n&quot;</span>, response-&gt;<a name="a3"></a><a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>);</div>
 <div class="line">      typed_context-&gt;sessionKey = (<span class="keywordtype">char</span>*) malloc((strlen(response-&gt;<a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>) + 1) * <span class="keyword">sizeof</span>(char));</div>
 <div class="line">      strcpy(typed_context-&gt;sessionKey, response-&gt;<a class="code" href="structssap__message.html#a34042fb91712891a6ff15040d6da241f">sessionKey</a>);</div>
-<div class="line">          typed_context-&gt;leave = 1;</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
-<div class="line">    <span class="keywordflow">case</span> <a name="a4"></a><a class="code" href="SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664ae09e07839103de682cb13fa773793fc0">LEAVE</a>:</div>
-<div class="line">      printf(<span class="stringliteral">&quot;A LEAVE response was received!\n&quot;</span>);</div>
-<div class="line">          typed_context-&gt;disconnect = 1;</div>
+<div class="line">    <span class="keywordflow">case</span> <a name="a4"></a><a class="code" href="SsapMessageGenerator_8h.html#a936e20f72ed4897a1387c0b95aeba664aa15c451953b2d2a93403afe786930d0f">INSERT</a>:</div>
+<div class="line">      printf(<span class="stringliteral">&quot;An INSERT response was received!\n&quot;</span>);</div>
+<div class="line">      printf(<span class="stringliteral">&quot;Body: %s\n&quot;</span>, response-&gt;<a name="a5"></a><a class="code" href="structssap__message.html#ac9ed661843388d23b79bef3b4a0d7440">body</a>);</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
 <div class="line">    <span class="keywordflow">default</span>:</div>
 <div class="line">      <span class="keywordflow">break</span>;</div>
@@ -127,49 +128,61 @@ $(document).ready(function(){initNavTree('join-leave-ssl_8c-example.html','');})
 <div class="line">  <span class="keywordflow">return</span>;  </div>
 <div class="line">}</div>
 <div class="line"></div>
+<div class="line"></div>
+<div class="line"><span class="keywordtype">void</span> connectionEventsHandler(<a class="code" href="MqttConnection_8h.html#a45c2d56b440c32dc5f0198e67499ad27">ConnectionEvent</a> event, <span class="keywordtype">void</span>* context){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Handling MQTT disconnection event...\n&quot;</span>);</div>
+<div class="line">    context_t* typed_context = (context_t*) context;</div>
+<div class="line">    typed_context-&gt;disconnect = 1;</div>
+<div class="line">}</div>
+<div class="line"></div>
 <div class="line"><span class="keywordtype">int</span> main(){</div>
 <div class="line">  context_t* context = malloc(<span class="keyword">sizeof</span>(context_t));</div>
 <div class="line">  context-&gt;sessionKey = NULL;</div>
-<div class="line">  context-&gt;leave = 0;</div>
-<div class="line">  context-&gt;disconnect = 1;</div>
+<div class="line">  context-&gt;disconnect = 0;</div>
 <div class="line"></div>
-<div class="line">  printf(<span class="stringliteral">&quot;Example: establish and close a MQTT over SSL connection with the SIB.\n&quot;</span>);</div>
-<div class="line">  <a name="_a5"></a><a class="code" href="structmqtt__connection.html">mqtt_connection</a>* connection = <a name="a6"></a><a class="code" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a>();</div>
-<div class="line">  <a name="a7"></a><a class="code" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110">MqttConnection_setRandomClientId</a>(connection);</div>
-<div class="line">  <a name="a8"></a><a class="code" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a">MqttConnection_setSsapCallback</a>(connection, messageReceivedHandler, (<span class="keywordtype">void</span>*) context);</div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56">KpMqtt_ConnectStatus</a> status = <a name="a9"></a><a class="code" href="KpMQTT_8h.html#ab32035bcba5974ab65eb2250c95462c7">KpMqtt_connectSSL</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;8883&quot;</span>, NULL, <span class="stringliteral">&quot;/etc/ssl/certs&quot;</span>);</div>
-<div class="line">  <span class="keywordflow">if</span> (status != <a name="a10"></a><a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ab22f505a013899f6c32d29dc2bdc7a10">Connection_Established</a>){</div>
-<div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong...\n&quot;</span>);</div>
+<div class="line">  printf(<span class="stringliteral">&quot;Example: detecting and handling disconnections while pushing data to the server.\n&quot;</span>);</div>
+<div class="line">  <a name="_a6"></a><a class="code" href="structmqtt__connection.html">mqtt_connection</a>* connection = <a name="a7"></a><a class="code" href="MqttConnection_8h.html#a7a3624e2efb580eafa084125c0ec59a7">MqttConnection_allocate</a>();</div>
+<div class="line">  <a name="a8"></a><a class="code" href="MqttConnection_8h.html#a1c81093d6b165a176de69d82e9b53110">MqttConnection_setRandomClientId</a>(connection);</div>
+<div class="line">  <a name="a9"></a><a class="code" href="MqttConnection_8h.html#a0699ad2bcf5891913c6e723eb02b8b10">MqttConnection_setConnectTimeout</a>(connection, 20);</div>
+<div class="line">  <a name="a10"></a><a class="code" href="MqttConnection_8h.html#a6a7fb07a3811e29e70fc7f0a432fd0cb">MqttConnection_setKeepAliveInterval</a>(connection, 10);</div>
+<div class="line">  <a name="a11"></a><a class="code" href="MqttConnection_8h.html#ac39e8f9d144e6992c2a3bf68dd65d336">MqttConnection_setRetryInterval</a>(connection, 2);</div>
+<div class="line">  <a name="a12"></a><a class="code" href="MqttConnection_8h.html#a9d66f2cabd46e403407bdfceb341192a">MqttConnection_setSsapCallback</a>(connection, messageReceivedHandler, (<span class="keywordtype">void</span>*) context);</div>
+<div class="line">  <a name="a13"></a><a class="code" href="MqttConnection_8h.html#ae40f53446bdcf83498439ecef958cb64">MqttConnection_setConnectionEventsCallback</a>(connection, connectionEventsHandler, (<span class="keywordtype">void</span>*) context);</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56">KpMqtt_ConnectStatus</a> status = <a name="a14"></a><a class="code" href="KpMQTT_8h.html#aa23b63035696b8f6215c403fe2c00661">KpMqtt_connect</a>(&amp;connection, <span class="stringliteral">&quot;sofia2.com&quot;</span>, <span class="stringliteral">&quot;1880&quot;</span>);</div>
+<div class="line">  <span class="keywordflow">if</span> (status != <a name="a15"></a><a class="code" href="KpMQTT_8h.html#a4f981ba6e196930a43d0f8fa9b3d3b56ab22f505a013899f6c32d29dc2bdc7a10">Connection_Established</a>){</div>
+<div class="line">    printf(<span class="stringliteral">&quot;Unable to connect to the SIB\n&quot;</span>);</div>
+<div class="line">    <span class="keywordflow">goto</span> exit;</div>
 <div class="line">  }  </div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *joinMessage = <a name="a11"></a><a class="code" href="SsapMessageGenerator_8h.html#a8eb3483515f92b49c69378422cefa0db">generateJoinMessage</a>(<span class="stringliteral">&quot;2cbbe5655fcb4545be5039fc6fb511de&quot;</span>, <span class="stringliteral">&quot;KpName:KpName01&quot;</span>);</div>
+<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *joinMessage = <a name="a16"></a><a class="code" href="SsapMessageGenerator_8h.html#a8eb3483515f92b49c69378422cefa0db">generateJoinMessage</a>(<span class="stringliteral">&quot;87d95afa2e87456e96a822e49495d1d1&quot;</span>, <span class="stringliteral">&quot;SensorHumedadKP:SensorHumedadKPInstance01&quot;</span>);</div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643">KpMqtt_SendStatus</a> send_status = <a name="a12"></a><a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, joinMessage, 1000);</div>
-<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a13"></a><a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac">Ssap_Message_Sent</a>){</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643">KpMqtt_SendStatus</a> send_status = <a name="a17"></a><a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, joinMessage, 1000);</div>
+<div class="line">  <span class="keywordflow">if</span> (send_status == <a name="a18"></a><a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac">Ssap_Message_Sent</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;The JOIN message was sent\n&quot;</span>);   </div>
 <div class="line">  }   </div>
 <div class="line">  <span class="keywordflow">while</span> (context-&gt;sessionKey == NULL)</div>
 <div class="line">        sleep(1);</div>
 <div class="line">  </div>
-<div class="line">  <a class="code" href="structssap__message.html">ssap_message</a> *leaveMessage = <a name="a14"></a><a class="code" href="SsapMessageGenerator_8h.html#af8c80c301697824ec192cda37843ace2">generateLeaveMessage</a>(context-&gt;sessionKey);</div>
 <div class="line">  </div>
-<div class="line">  send_status = <a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, leaveMessage, 1000);</div>
-<div class="line">  <span class="keywordflow">if</span> (send_status == <a class="code" href="KpMQTT_8h.html#ae7ce513fd55eb8721be034d2372a4643a3e784638ce992c9a23098669842b84ac">Ssap_Message_Sent</a>){</div>
-<div class="line">    printf(<span class="stringliteral">&quot;The LEAVE message was sent\n&quot;</span>);   </div>
-<div class="line">  } </div>
+<div class="line">  printf(<span class="stringliteral">&quot;Release your IP address now!\n&quot;</span>);</div>
+<div class="line">  <span class="keywordflow">while</span> (!context-&gt;disconnect){</div>
+<div class="line">     printf(<span class="stringliteral">&quot;The connection with the SIB hasn&#39;t been lost yet. Pushing data to the SIB...\n&quot;</span>);</div>
+<div class="line">     <a class="code" href="structssap__message.html">ssap_message</a> *insertMessage = <a name="a19"></a><a class="code" href="SsapMessageGenerator_8h.html#a7d54ddf0053f11efa09ff2b2142f83ce">generateInsertMessage</a>(context-&gt;sessionKey,ONTOLOGY, NATIVE_INSERT_DATA);</div>
+<div class="line">     send_status = <a class="code" href="KpMQTT_8h.html#af315fc4b4b7a328ff70bc8d8f23bf05a">KpMqtt_send</a>(connection, insertMessage, 1000);</div>
+<div class="line">     printf(<span class="stringliteral">&quot;The INSERT message has been sent\n&quot;</span>);</div>
+<div class="line">     sleep(5);</div>
+<div class="line">  }</div>
 <div class="line">  </div>
-<div class="line">  <span class="keywordflow">while</span> (!context-&gt;disconnect)</div>
-<div class="line">        sleep(1);</div>
-<div class="line">  </div>
-<div class="line">  <a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6d">KpMqtt_DisconnectStatus</a> status1 = <a name="a15"></a><a class="code" href="KpMQTT_8h.html#aabc4e2d34f3af3c26f1c428e3639ff0e">KpMqtt_disconnect</a>(connection, 100);</div>
-<div class="line">  <span class="keywordflow">if</span> (status1 != <a name="a16"></a><a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6daa9de82032e3b7273c996481d57fe40d2">Connection_Closed</a>){</div>
+<div class="line">  <a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6d">KpMqtt_DisconnectStatus</a> status1 = <a name="a20"></a><a class="code" href="KpMQTT_8h.html#aabc4e2d34f3af3c26f1c428e3639ff0e">KpMqtt_disconnect</a>(connection, 0);</div>
+<div class="line">  <span class="keywordflow">if</span> (status1 != <a name="a21"></a><a class="code" href="KpMQTT_8h.html#a0e56bb2a6d89a9a88d5c2fc7ae0efa6daa9de82032e3b7273c996481d57fe40d2">Connection_Closed</a>){</div>
 <div class="line">    printf(<span class="stringliteral">&quot;Oops! Something went wrong while disconnecting from the SIB...\n&quot;</span>);    </div>
 <div class="line">  } </div>
-<div class="line">  </div>
-<div class="line">  free(context-&gt;sessionKey);</div>
-<div class="line">  free(context); </div>
+<div class="line">exit:</div>
+<div class="line">  <span class="keywordflow">if</span> (context-&gt;sessionKey != NULL)</div>
+<div class="line">    free(context-&gt;sessionKey);</div>
+<div class="line">  free(context);</div>
 <div class="line">  printf(<span class="stringliteral">&quot;Exit!\n&quot;</span>);  </div>
-<div class="line">  <a name="a17"></a><a class="code" href="KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b">KpMqtt_freeOpenSSLTables</a>();</div>
+<div class="line">  <a name="a22"></a><a class="code" href="KpMQTT_8h.html#a3651864a3ebb2cfeac1a698158ee304b">KpMqtt_freeOpenSSLTables</a>();</div>
 <div class="line">  <span class="keywordflow">return</span> 0;</div>
 <div class="line">}</div>
 </div><!-- fragment --> </div><!-- contents -->
