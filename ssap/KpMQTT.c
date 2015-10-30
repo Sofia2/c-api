@@ -37,18 +37,6 @@
  * Auxiliary functions
  */
 
-void addTimeoutError(mqtt_connection* conn){
-    Thread_lock_mutex(conn->timeoutErrorsMutex);
-    conn->consecutiveTimeoutErrors++;
-    Thread_unlock_mutex(conn->timeoutErrorsMutex);
-}
-
-void clearTimeoutErrors(mqtt_connection* conn){
-    Thread_lock_mutex(conn->timeoutErrorsMutex);
-    conn->consecutiveTimeoutErrors = 0;
-    Thread_unlock_mutex(conn->timeoutErrorsMutex);
-}
-
 KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* payload, int timeout){
     MQTTClient_message pubmsg = MQTTClient_message_initializer;
     MQTTClient_deliveryToken token;
@@ -71,14 +59,9 @@ KpMqtt_SendStatus publish(mqtt_connection* connection, const char* topic, char* 
                 connection->lost = 1;
                 return DeliveryError_ConnectionLost;
             default:
-                addTimeoutError(connection);
-                if (connection->consecutiveTimeoutErrors == connection->maxConsecutiveTimeoutErrors){
-                    connection->lost = 1;                    
-                }
                 return DeliveryError_TimeoutError;
         }
-    } 
-    clearTimeoutErrors(connection);
+    }
     MQTTClient_message* aux=&pubmsg;
     MQTTClient_freeMessage(&aux);
 
@@ -94,6 +77,7 @@ void onMqttConnectionEvent(void* context, char* cause){
     }
 }
 
+/*
 thread_return_type monitorConnection(void* context){
     mqtt_connection* conn = (mqtt_connection*) context;
     Thread_lock_mutex(conn->watchdogMutex);
@@ -108,7 +92,7 @@ thread_return_type monitorConnection(void* context){
     Thread_unlock_mutex(conn->watchdogMutex);
     onMqttConnectionEvent(conn, NULL);
     return 0;
-}
+}*/
 
 void deallocateMqttConnection(mqtt_connection* conn) {
     MQTTClient_destroy(&(conn->mqttClient));
@@ -238,7 +222,7 @@ ConnectionStatus establishConnection(mqtt_connection* connection, const char* se
     free(topicIndication);
     
     if (connection->connectionEventsCallback != NULL){
-        Thread_start(monitorConnection, (void*) connection);
+        //Thread_start(monitorConnection, (void*) connection);
     }
 
     return CONNECTED;
@@ -278,7 +262,7 @@ DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout) 
     
     int timeoutToUse = timeout;
     
-    if(!connection->lost){
+    if(!connection->lost && MQTTClient_isConnected(connection->mqttClient)){
         // Unsubscribe from the KP and indication topics
         size_t topic_length = strlen(SSAP_RESPONSES_TOPIC);
         size_t clientId_length = strlen(connection->clientId);
@@ -315,7 +299,11 @@ DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout) 
     }
     
     
-    int crd=MQTTClient_disconnect(connection->mqttClient, timeoutToUse);
+    int crd = MQTTCLIENT_SUCCESS;
+    
+    if (MQTTClient_isConnected(connection->mqttClient)){
+        crd = MQTTClient_disconnect(connection->mqttClient, timeoutToUse);
+    }
     
     deallocateMqttConnection(connection);
     

@@ -64,7 +64,6 @@ int main(){
   MqttConnection_setConnectTimeout(connection, 20);
   MqttConnection_setKeepAliveInterval(connection, 10);
   MqttConnection_setRetryInterval(connection, 2);
-  MqttConnection_setMaxConsecutiveTimeoutErrors(connection, 2);
   MqttConnection_setSsapCallback(connection, messageReceivedHandler, (void*) context);
   MqttConnection_setConnectionEventsCallback(connection, connectionEventsHandler, (void*) context);
   ConnectionStatus status = KpMqtt_connect(&connection, "sofia2.com", "1880");

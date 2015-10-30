@@ -143,7 +143,7 @@ MQTTPacket* MQTTClient_cycle(int* sock, unsigned long timeout, int* rc);
 int MQTTClient_cleanSession(Clients* client);
 void MQTTClient_stop();
 int MQTTClient_disconnect_internal(MQTTClient handle, int timeout);
-int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int stop);
+int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int stop, int lockMutex);
 void MQTTClient_writeComplete(int socket);
 
 typedef struct
@@ -976,7 +976,7 @@ exit:
 	else
 	{
 		Thread_unlock_mutex(mqttclient_mutex);
-		MQTTClient_disconnect1(handle, 0, 0, (MQTTVersion == 3)); /* not "internal" because we don't want to call connection lost */
+		MQTTClient_disconnect1(handle, 0, 0, (MQTTVersion == 3), 1); /* not "internal" because we don't want to call connection lost */
 		Thread_lock_mutex(mqttclient_mutex);
 	}
 	FUNC_EXIT_RC(rc);
@@ -1163,7 +1163,7 @@ exit:
 }
 
 
-int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int stop)
+int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int stop, int lockMutex)
 {
 	MQTTClients* m = handle;
 	START_TIME_TYPE start;
@@ -1171,7 +1171,8 @@ int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int sto
 	int was_connected = 0;
 
 	FUNC_ENTRY;
-	Thread_lock_mutex(mqttclient_mutex);
+        if (lockMutex)
+            Thread_lock_mutex(mqttclient_mutex);
 
 	if (m == NULL || m->c == NULL)
 	{
@@ -1192,9 +1193,11 @@ int MQTTClient_disconnect1(MQTTClient handle, int timeout, int internal, int sto
 		{ /* wait for all inflight message flows to finish, up to timeout */
 			if (MQTTClient_elapsed(start) >= timeout)
 				break;
-			Thread_unlock_mutex(mqttclient_mutex);
+                        if (lockMutex)
+                            Thread_unlock_mutex(mqttclient_mutex);
 			MQTTClient_yield();
-			Thread_lock_mutex(mqttclient_mutex);
+                        if (lockMutex)
+                            Thread_lock_mutex(mqttclient_mutex);
 		}
 	}
 
@@ -1216,15 +1219,17 @@ exit:
 		Log(TRACE_MIN, -1, "Calling connectionLost for client %s", m->c->clientID);
 		Thread_start(connectionLost_call, m);
 	}
-	Thread_unlock_mutex(mqttclient_mutex);
+	if (lockMutex)
+            Thread_unlock_mutex(mqttclient_mutex);
 	FUNC_EXIT_RC(rc);
 	return rc;
 }
 
 
+
 int MQTTClient_disconnect_internal(MQTTClient handle, int timeout)
 {
-	return MQTTClient_disconnect1(handle, timeout, 1, 1);
+	return MQTTClient_disconnect1(handle, timeout, 1, 1, 0);
 }
 
 
@@ -1236,7 +1241,7 @@ void MQTTProtocol_closeSession(Clients* c, int sendwill)
 
 int MQTTClient_disconnect(MQTTClient handle, int timeout)
 {
-	return MQTTClient_disconnect1(handle, timeout, 0, 1);
+	return MQTTClient_disconnect1(handle, timeout, 0, 1, 1);
 }
 
 

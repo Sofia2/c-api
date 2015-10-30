@@ -47,8 +47,6 @@ extern "C" {
 #define DEFAULT_CONNECT_TIMEOUT 30 ///< The default MQTT connect timeout in seconds.
 #define DEFAULT_RETRY_INTERVAL 20 ///< The default message delivery retry interval in seconds.
 #define MAX_MQTT_CLIENT_ID_LEN 23 ///< MQTT clientIDs must be between 1 and 23 bytes long.
-#define DEFAULT_CONSECUTIVE_TIMEOUT_ERROR_THRESHOLD 5 ///< The default number of consecutive timeout errors that indicate a connection failure.
-    
     
 SSAP_MQTT_CONNECTION_API typedef enum {CONNECTION_LOST ///< Event type of detected MQTT disconnections.
 } ConnectionEvent;
@@ -154,16 +152,6 @@ SSAP_MQTT_CONNECTION_API typedef struct {
   int retryInterval;
   
   /**
-   * The maximum number of consecutive timeout errors that will make the monitoring thread close the connection.
-   */
-  int maxConsecutiveTimeoutErrors;
-  
-  /**
-   * The number of consecutive timeout errors that will make the monitoring thread close the connection.
-   */
-  volatile int consecutiveTimeoutErrors;
-  
-  /**
    * A flag that indicates if the connection was lost.
    */
   volatile char lost;
@@ -172,14 +160,7 @@ SSAP_MQTT_CONNECTION_API typedef struct {
    * The mutex used by the connection watchdog.
    * @warning This member must only be used within the C API.
    */
-  mutex_type watchdogMutex;
-  
-  /**
-   * The mutex used to update the timeout errors counter.
-   * @warning This member must only be used within the C API.
-   */
-  mutex_type timeoutErrorsMutex;
-  
+  mutex_type watchdogMutex;  
 } mqtt_connection;
 
 /**
@@ -279,14 +260,6 @@ SSAP_MQTT_CONNECTION_API void MqttConnection_setConnectTimeout(mqtt_connection* 
  * @param seconds The delivery retry interval to be used.
  */
 SSAP_MQTT_CONNECTION_API void MqttConnection_setRetryInterval(mqtt_connection* conn, int seconds);
-
-/**
- * Overrides the default consecutive timeout error threshold (5 consecutive timeout errors).
- * @param conn The MQTT connection to be configured.
- * @param threshold The threshold to be used
- */
-SSAP_MQTT_CONNECTION_API void MqttConnection_setMaxConsecutiveTimeoutErrors(mqtt_connection* conn, int threshold);
-
 
 /**
  * Frees the memory of a MQTT connection.

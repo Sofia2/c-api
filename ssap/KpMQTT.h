@@ -117,6 +117,7 @@ KPMQTTDLL_API typedef struct {
  * 	has been established, it will be setted to NULL.
  * @return A ConnectionStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connect() instead.
+ * @warning This function is not thread-safe.
  */
 KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(const char* server, const char* port, mqtt_credentials* credentials,
                                 genericSsapCallback* messageReceivedCallback, void* callbackContext,
@@ -130,6 +131,7 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectd(const char* server, const char* p
  * @param server The SIB server name
  * @param port The SIB MQTT port
  * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @warning This function is not thread-safe.
  */
 KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, const char* server, const char* port);
 
@@ -152,6 +154,7 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connect(mqtt_connection** connection, cons
  * 	has been established, it will be setted to NULL.
  * @return A ConnectionStatus enum value representing the result of the connection process.
  * @deprecated Use KpMqtt_connectSSL() instead.
+ * @warning This function is not thread-safe.
  */
 KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(const char* server, const char* port, mqtt_credentials* credentials,
                                                   const char* ca_file, const char* ca_path,
@@ -169,6 +172,7 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSLd(const char* server, const char
  * @param ca_path The directory that contains the trusted PEM certificates (usually, /etc/ssl/certs).
  * @warning You must pass either the ca_file or the ca_path parameter to this function.
  * @return A ConnectionStatus enum value representing the result of the connection process.
+ * @warning This function is not thread-safe.
  */
 KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, const char* server, const char* port,
                                                 const char* ca_file, const char* ca_path);
@@ -179,6 +183,7 @@ KPMQTTDLL_API ConnectionStatus KpMqtt_connectSSL(mqtt_connection** connection, c
  * @param timeout A timeout to close the connection in milliseconds. If the
  * 	timeout elapses, the connection will be closed abruply.
  * @return A DisconnectionStatus enum value representing the result of the disconnection process.
+ * @warning This function is not thread-safe.
  */
 KPMQTTDLL_API DisconnectionStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout);
 
