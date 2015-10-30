@@ -31,6 +31,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "KpMQTT.h"
+#include "./paho-mqtt-c/Socket.h"
 #include "sleeps.h"
 
 /**
@@ -176,7 +177,7 @@ KpMqtt_ConnectStatus establishConnection(mqtt_connection* connection, const char
         return ConnectError_CallbacksNotRegistered;
     }
 
-    if ((rc = (connection->mqttClient, &conn_opts)) != MQTTCLIENT_SUCCESS) {
+    if ((rc = MQTTClient_connect(connection->mqttClient, &conn_opts)) != MQTTCLIENT_SUCCESS) {
         deallocateMqttConnection(connection);
         free(address);
         switch(rc){
@@ -266,6 +267,7 @@ KpMqtt_ConnectStatus KpMqtt_connectSSL(mqtt_connection** connection, const char*
 KpMqtt_DisconnectStatus KpMqtt_disconnect(mqtt_connection* connection, int timeout) {
     
     int timeoutToUse = timeout;
+    int unsubscribe_rc = MQTTCLIENT_SUCCESS;
     
     if(!connection->lost && MQTTClient_isConnected(connection->mqttClient)){
         // Unsubscribe from the KP and indication topics
@@ -274,25 +276,31 @@ KpMqtt_DisconnectStatus KpMqtt_disconnect(mqtt_connection* connection, int timeo
 
         char* topic=(char*) malloc((topic_length + clientId_length +1)*sizeof(char));
         if (topic == NULL)
-            return FAILED_DisconnectionInternalError;
+            return DisconnectError_InternalError;
         topic[0] = '\0';
         strcat(topic, SSAP_RESPONSES_TOPIC);
         strcat(topic, connection->clientId);
 
-        MQTTClient_unsubscribe(connection->mqttClient, topic);
-
+        int rc = MQTTClient_unsubscribe(connection->mqttClient, topic);
+        free((char*)topic);
+        if (rc != MQTTCLIENT_SUCCESS && rc != MQTTCLIENT_DISCONNECTED && rc != SOCKET_ERROR){
+            unsubscribe_rc = DisconnectError_InternalError;
+        }
+        
         topic_length = strlen(SSAP_INDICATIONS_TOPIC);
         char* topicIndication=(char*) malloc((topic_length + clientId_length +1)*sizeof(char));
-            if (topicIndication == NULL)
-                    return FAILED_DisconnectionInternalError;
+        if (topicIndication == NULL)
+            return DisconnectError_InternalError;
         topicIndication[0] = '\0';
         strcat(topicIndication, SSAP_INDICATIONS_TOPIC);
         strcat(topicIndication, connection->clientId);
 
-        MQTTClient_unsubscribe(connection->mqttClient, topicIndication);
-
-        free((char*)topic);
+        rc = MQTTClient_unsubscribe(connection->mqttClient, topicIndication);
         free((char*)topicIndication);
+        if (rc != MQTTCLIENT_SUCCESS && rc != MQTTCLIENT_DISCONNECTED && rc != SOCKET_ERROR){
+            unsubscribe_rc = DisconnectError_InternalError;
+        }        
+       
     } else {
         timeoutToUse = 0;
     }
@@ -312,10 +320,12 @@ KpMqtt_DisconnectStatus KpMqtt_disconnect(mqtt_connection* connection, int timeo
     
     deallocateMqttConnection(connection);
     
-    if(crd!=MQTTCLIENT_SUCCESS) {
-        return FAILED_ClosePhysicalConnection;
+    if(crd != MQTTCLIENT_SUCCESS) {
+        return DisconnectError_SocketError;
+    } else if (unsubscribe_rc != MQTTCLIENT_SUCCESS){
+        return DisconnectWarning_MqttSubscriptionErrors;
     } else {
-        return DISCONNECTED;
+        return Connection_Closed;
     }
 }
 

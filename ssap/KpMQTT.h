@@ -81,9 +81,11 @@ KPMQTTDLL_API typedef enum {
  *//**
  * \endcond
  */
-KPMQTTDLL_API typedef enum {DISCONNECTED, ///< The connection was closed properly 
-  FAILED_ClosePhysicalConnection, ///< The socket could not be closed
-  FAILED_DisconnectionInternalError ///< An internal API error has occured
+KPMQTTDLL_API typedef enum {
+    Connection_Closed, ///< The connection was closed properly
+    DisconnectWarning_MqttSubscriptionErrors, ///< The connection was closed, but its MQTT subscriptions may still exist.
+    DisconnectError_SocketError, ///< The socket could not be closed
+    DisconnectError_InternalError ///< An internal API error has occured
 } KpMqtt_DisconnectStatus;
 
 /**

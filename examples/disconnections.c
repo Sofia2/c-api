@@ -89,7 +89,7 @@ int main(){
   }
   
   KpMqtt_DisconnectStatus status1 = KpMqtt_disconnect(connection, 0);
-  if (status1 != DISCONNECTED){
+  if (status1 != Connection_Closed){
     printf("Oops! Something went wrong while disconnecting from the SIB...\n");    
   } 
 exit:
