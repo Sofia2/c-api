@@ -1,8 +1,8 @@
 /**
   @example inserts.c
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief An example on sending data to store at the RTDB
   In this example we establish a MQTT connection with the SIB, create a session and
   send data to the SIB.
@@ -29,7 +29,6 @@
 #include "../ssap/sleeps.h"
 
 #define ONTOLOGY "SensorHumedad"
-
 #define NATIVE_INSERT_DATA "\"SensorHumedad\":{ \"identificador\":\"ST-TA3231\",\"timestamp\":{\"$date\": \"2014-01-30T17:14:00Z\"},\"medida\":28.6,\"unidad\":\"string\",\"geometry\":{\"type\":\"Point\", \"coordinates\":[9,19.3]}}}"
 #define SQLLIKE_INSERT_DATA "INSERT INTO SensorHumedad (identificador, medida, unidad) VALUES (\"ST-TA3231-1HH\",50,\"C\");"
 #define KP "SensorHumedadKP:SensorHumedadKPInstance01"

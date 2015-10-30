@@ -1,8 +1,8 @@
 /**
   @file sleeps.h
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief A platform-independent implementation of the POSIX sleep() function.
   @see http://sofia2.com/desarrollador_en.html for further information.
   @copyright Copyright 2013-15 Indra Sistemas S.A.

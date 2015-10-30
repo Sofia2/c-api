@@ -1,8 +1,8 @@
 /**
   @examples queries.h
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief An example on retrieving data from the RTDB
   In this example we establish a MQTT connection with the SIB, create a session and
   retrieve data from the RTDB.

@@ -1,8 +1,8 @@
 /**
   @examples subscribes.c
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief An example on creating subscriptions
   In this example we establish a MQTT connection with the SIB, create a session, subscribe to the changes of an
   ontology that match a criterion and send an instance of that ontology to the SIB. 

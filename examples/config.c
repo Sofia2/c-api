@@ -1,8 +1,8 @@
 /**
   @examples config.c
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief An example on retrieving KP configuration from the Sofia2 platform.
   @see http://sofia2.com/desarrollador_en.html
   @copyright Copyright 2013-15 Indra Sistemas S.A.

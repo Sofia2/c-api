@@ -1,9 +1,9 @@
 /**
-  @examples disconnections.c
+  @examples disconnections-data.c
   @author Indra Sistemas S.A.
   @date Oct 30 2015
   @version 4.3
-  @brief An example on detecting disconnections from the SIB server asynchronously.
+  @brief An example on handling disconnections from the SIB server while pushing data to it.
   @copyright Copyright 2013-15 Indra Sistemas S.A.
 
     Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,6 +26,9 @@
 #include "../ssap/KpMQTT.h"
 #include "../ssap/sleeps.h"
 
+#define ONTOLOGY "SensorHumedad"
+#define NATIVE_INSERT_DATA "\"SensorHumedad\":{ \"identificador\":\"ST-TA3231\",\"timestamp\":{\"$date\": \"2014-01-30T17:14:00Z\"},\"medida\":28.6,\"unidad\":\"string\",\"geometry\":{\"type\":\"Point\", \"coordinates\":[9,19.3]}}}"
+
 typedef struct {
   char* sessionKey;
   volatile int disconnect;
@@ -39,6 +42,10 @@ void messageReceivedHandler(ssap_message* response, void* context){
       printf("Session key: %s\n", response->sessionKey);
       typed_context->sessionKey = (char*) malloc((strlen(response->sessionKey) + 1) * sizeof(char));
       strcpy(typed_context->sessionKey, response->sessionKey);
+      break;
+    case INSERT:
+      printf("An INSERT response was received!\n");
+      printf("Body: %s\n", response->body);
       break;
     default:
       break;
@@ -58,7 +65,7 @@ int main(){
   context->sessionKey = NULL;
   context->disconnect = 0;
 
-  printf("Example: detecting and handling disconnections.\n");
+  printf("Example: detecting and handling disconnections while pushing data to the server.\n");
   mqtt_connection* connection = MqttConnection_allocate();
   MqttConnection_setRandomClientId(connection);
   MqttConnection_setConnectTimeout(connection, 20);
@@ -72,7 +79,7 @@ int main(){
     goto exit;
   }  
   
-  ssap_message *joinMessage = generateJoinMessage("859ff38deae8442d90d3a525a0d837dd", "KP_Drone_Joystick:KP_Drone_Joystick01");
+  ssap_message *joinMessage = generateJoinMessage("87d95afa2e87456e96a822e49495d1d1", "SensorHumedadKP:SensorHumedadKPInstance01");
   
   KpMqtt_SendStatus send_status = KpMqtt_send(connection, joinMessage, 1000);
   if (send_status == Ssap_Message_Sent){
@@ -84,7 +91,10 @@ int main(){
   
   printf("Release your IP address now!\n");
   while (!context->disconnect){
-     printf("The connection with the SIB hasn't been lost yet. Sleeping...\n");
+     printf("The connection with the SIB hasn't been lost yet. Pushing data to the SIB...\n");
+     ssap_message *insertMessage = generateInsertMessage(context->sessionKey,ONTOLOGY, NATIVE_INSERT_DATA);
+     send_status = KpMqtt_send(connection, insertMessage, 1000);
+     printf("The INSERT message has been sent\n");
      sleep(5);
   }
   

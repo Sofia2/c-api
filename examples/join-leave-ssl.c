@@ -1,8 +1,8 @@
 /**
   @examples join-leave-ssh.c
   @author Indra Sistemas S.A.
-  @date Oct 29 2015
-  @version 4.2
+  @date Oct 30 2015
+  @version 4.3
   @brief An example of the simplest interaction with the Sofia2 platform.
   In this example we establish a MQTT connection over SSL with the SIB, and then create 
   and close a session using the JOIN and LEAVE SSAP messages.
